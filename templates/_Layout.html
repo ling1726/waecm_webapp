@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html> 
+	<head>
+		<meta charset="UTF-8">
+		<title>{%block title%} Lingfan Gao {%endblock%}</title>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/materialize.min.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/font-awesome.min.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+
+
+		<!-- all the icons-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>	
+
+	<body>
+		<!-- navbar -->
+	
+	<header>	
+	<nav class="blue darken-3">
+		<div class="nav-wrapper">
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li class="waves-effect"><a class="toExternal" data-url="https://fr.linkedin.com/in/lingfan-gao-092b0084">LinkedIn <i class="material-icons right">link</i></a></li>
+	
+				<li class="waves-effect"><a href="{{url_for('contact')}}">Contact <i class="material-icons right">email</i></a></li>
+				<li class="waves-effect"><a href="{{url_for('feedback')}}">Feedback <i class="material-icons right">comment</i></a></li>
+				{%if  session.get('isLogged')%}
+				<li class="waves-effect"><a  class="" 
+						href="{{url_for('logout')}}">Logout<i class="material-icons right">exit_to_app</i></a></li>
+
+				{%else%}
+				<li class="waves-effect"><a  class="modalButton" 
+						data-url="{{url_for('login')}}">Login<i class="material-icons right">person</i></a></li>
+				{%endif%}
+			</ul>
+		</div> 	
+		
+	</nav>
+
+	</header>
+	
+	<main>
+		<!-- Content -->
+		<div class="container">
+			{%block content%} <h2>Coming soon !</h2>{%endblock%}
+		</div>
+
+		<!-- modal -->
+		<div id="modal" class="modal">
+	 		<!-- modal content delivered here -->	
+		</div>
+	</main>
+
+		<!-- mandatory scripts -->
+		<script src="{{url_for('static', filename = 'js/jquery-2.2.3.min.js')}}"></script>
+		<script src="{{url_for('static', filename = 'js/materialize.min.js')}}"></script>
+		<script src="{{url_for('static', filename = 'js/bLing.js')}}"></script> 	
+		
+		{%block scripts%}{%endblock%}	
+	</body>
+</html>

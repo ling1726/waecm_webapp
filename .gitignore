@@ -87,3 +87,12 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# node modules
+node_modules
+
+# css/fonts/img
+static/css/*
+static/img/*
+static/js/*
+static/fonts/*
