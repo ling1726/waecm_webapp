@@ -5,7 +5,6 @@ from database import db_session, init_db
 from models import *
 
 
-
 # create application
 app = Flask(__name__)
 app.secret_key = os.urandom(12)

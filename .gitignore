@@ -96,6 +96,12 @@ static/css/*
 static/img/*
 static/js/*
 static/fonts/*
+<<<<<<< HEAD
 
 # swp files
 *.swp
+=======
+/static/dist/
+/.idea/
+/data/
+>>>>>>> c06bb3c2f1cdff7f4f05bc50a437f4576784ac93
