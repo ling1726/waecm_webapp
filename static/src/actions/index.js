@@ -9,7 +9,7 @@ export function increment(value){
     }
 }
 
-export function getCurrent(){
+export function getCurrent(){ 
     return dispatch =>{
         dispatch({type: types.COUNTER_REQUEST});
 
