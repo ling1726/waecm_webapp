@@ -7,7 +7,15 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=GH45hejg0ehg3h408gh430hg324h
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=waecm
       - MYSQL_USER=waecmuser
-      - MYSQL_PASSWORD=Fcgdaeb1726
+      - MYSQL_PASSWORD=waecmpassword
+  webapp:
+    build: .
+    depends_on:
+      - mysql
+    ports:
+      - "5000:5000"
+    links:
+      - mysql:db
