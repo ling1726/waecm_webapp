@@ -10,6 +10,7 @@ Run in background: ``$ docker-compose up -d``
 stop and remove container: ``$ docker-compose down``
 
 ## install back end dependencies
+$ (sudo) apt-get install libmysqlclient-dev
 $ (sudo) pip install -r requirements.txt
 
 ## start python backend server
