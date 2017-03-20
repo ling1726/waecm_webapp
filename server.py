@@ -1,14 +1,18 @@
 import os, logging
 from flask import Flask, session, jsonify,  request, session, redirect, url_for, Response 
 from json import dumps
+from flask_jwt import JWT, jwt_required, current_identity
 from database import db_session, init_db
 from models import *
+from auth import *
 
 
 # create application
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
 
+# jwt
+jwt = JWT(app, authenticate, identity)
 
 #config
 app.config.update(dict(
@@ -31,6 +35,10 @@ def home():
 @app.route('/api/counter', methods=['GET', 'POST'])
 def counter():
     counter = db_session.query(Counter).first()
+    if counter is  None:
+        counter = Counter()
+        db_session.add(counter)
+
     if request.method == 'GET':
         return jsonify(value=counter.value)
     else:
@@ -39,6 +47,7 @@ def counter():
         return jsonify(value=counter.value)
 
 @app.route('/api/counter/reset', methods=['POST'])
+@jwt_required()
 def resetCounter():
     counter = db_session.query(Counter).first()
     counter.reset()
@@ -47,4 +56,4 @@ def resetCounter():
 
 if __name__ == '__main__':
     init_db()
-    app.run()
+    app.run(host='0.0.0.0')
