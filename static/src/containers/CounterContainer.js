@@ -6,14 +6,14 @@ import * as CounterActions from '../actions/index'
 
 export class CounterContainer extends Component{
     
-    componentDidMount(){debugger
+    componentDidMount(){
         const {counterActions} = this.props;
         counterActions.getCurrent();
     }    
 
     handleIncrement = () => {
-        const {value, counterActions} = this.props
-        counterActions.increment(value)
+        const {counterActions} = this.props
+        counterActions.increment()
     }
     
     render(){ 

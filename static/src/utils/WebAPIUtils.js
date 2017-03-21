@@ -10,7 +10,7 @@ export default class {
         })
     }
 
-    static getCurrentCounter(){ debugger
+    static getCurrentCounter(){
         return axios({
             url: '/api/counter',
             method: 'get',
