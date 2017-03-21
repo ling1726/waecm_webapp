@@ -5,11 +5,11 @@ const initialState = {value: 0};
 export default function reducers(state = initialState, action){debugger 
     switch (action.type){
         case types.INCREMENT:
-            return {value: action.value};
+            return {...state, value: action.value};
         case types.COUNTER_REQUEST:
             return state;
         case types.COUNTER_SUCCESS:
-            return {value: action.value};
+            return {...state, value: action.value};
         case types.COUNTER_FAILED:
             return state;
         default:

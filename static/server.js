@@ -22,7 +22,8 @@ new WebpackDevServer(webpack(config), {
       chunkModules: false
     },
     proxy:{
-        '/api/*': 'http://localhost:5000'
+        '/api/*': 'http://localhost:5000',
+        '/auth': 'http://localhost:5000'
     }
 }).listen(3000, 'localhost', function (err) {
     if (err) {

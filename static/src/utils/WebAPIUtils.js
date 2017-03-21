@@ -18,4 +18,18 @@ export default class {
             return res.data
         })
     }
+
+    static getAuthToken(loginData){debugger
+        return axios({
+            url: '/auth',
+            method: 'post',
+            data:JSON.stringify({
+                username: loginData.username,
+                password: loginData.password
+            }),
+            headers: {'Content-Type': 'application/json'}
+        }).then((res) => {
+            return res.data;
+        })
+    }
 }

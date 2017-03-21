@@ -1,5 +1,5 @@
 import os, logging
-from flask import Flask, session, jsonify,  request, session, redirect, url_for, Response 
+from flask import Flask, session, jsonify,  request, session, redirect, url_for, Response, render_template 
 from json import dumps
 from flask_jwt import JWT, jwt_required, current_identity
 from database import db_session, init_db
@@ -8,7 +8,7 @@ from auth import *
 
 
 # create application
-app = Flask(__name__)
+app = Flask(__name__, template_folder='./static/dist')
 app.secret_key = os.urandom(12)
 
 # jwt
@@ -30,7 +30,7 @@ def shutdown_session(exception = None):
 
 @app.route('/')
 def home():
-    return render_template('home/index.html')
+    return render_template('index.html')    
 
 @app.route('/api/counter', methods=['GET', 'POST'])
 def counter():

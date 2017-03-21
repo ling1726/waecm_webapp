@@ -20,3 +20,17 @@ export function getCurrent(){
         })
     }
 }
+
+
+export function getAuthToken(loginData){ debugger
+    return dispatch => {
+        dispatch({type: types.AUTH_REQUEST});
+
+        WebAPIUtils.getAuthToken(loginData).then((res) => { debugger
+            localStorage.token = res.access_token;
+            dispatch({type: types.AUTH_SUCCESS, token: res.access_token});
+        }).catch((err) => { debugger
+            dispatch({type: types.AUTH_FAILED});
+        })
+    }
+}
