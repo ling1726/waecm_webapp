@@ -12,8 +12,8 @@ export class CounterContainer extends Component{
     }    
 
     handleIncrement = () => {
-        const {value, counterActions} = this.props
-        counterActions.increment(value)
+        const {counterActions} = this.props
+        counterActions.increment()
     }
     
     render(){ 
