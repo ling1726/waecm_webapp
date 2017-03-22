@@ -32,19 +32,25 @@ def shutdown_session(exception = None):
 def home():
     return render_template('index.html')    
 
-@app.route('/api/counter', methods=['GET', 'POST'])
-def counter():
+@app.route('/api/counter', methods=['GET'])
+def getCounter():
     counter = db_session.query(Counter).first()
-    if counter is  None:
+    if counter is None:
         counter = Counter()
         db_session.add(counter)
 
-    if request.method == 'GET':
-        return jsonify(value=counter.value)
-    else:
-        counter.increment()
-        db_session.commit()
-        return jsonify(value=counter.value)
+    return jsonify(value=counter.value)
+
+
+@app.route('/api/counter', methods=['POST'])
+@jwt_required()
+def incrementCounter():
+    counter = db_session.query(Counter).first()
+    counter.increment()
+    db_session.commit()
+    return jsonify(value=counter.value)
+
+
 
 @app.route('/api/counter/reset', methods=['POST'])
 @jwt_required()
