@@ -8,7 +8,7 @@ from auth import *
 
 
 # create application
-app = Flask(__name__, template_folder='./static/dist')
+app = Flask(__name__, template_folder='./static/prod')
 app.secret_key = os.urandom(12)
 
 # jwt

@@ -20,7 +20,10 @@ $ python server.py
 $ npm install
 
 ## build front end
-$ npm run build
+# for each environment
+
+$ npm run build-dev
+$ npm run buid-prod
 
 ## start fromt end development server
 $ node server
