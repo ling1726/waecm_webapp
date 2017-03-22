@@ -10,7 +10,7 @@ export default function reducers(state = initialState, action){
             return {...state, value: action.value};
         case types.COUNTER_FAILED:
             return {...state};
-        case types.COUNTER_INCREMENT:
+        case types.COUNTER_INCREMENT_REQUEST:
             return { value: action.value};
         case types.COUNTER_INCREMENT_FAILED:
             return {...state};

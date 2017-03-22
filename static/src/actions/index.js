@@ -48,7 +48,13 @@ export function getAuthToken(loginData){
 export function checkAuthToken(){
     return dispatch =>{ debugger
         if(localStorage.token){
-            dispatch({type: types.AUTH_SUCCESS, token: localStorage.token});
+            WebAPIUtils.checkAuthToken().then((res) => {
+                if(res){
+                     dispatch({type: types.AUTH_SUCCESS, token: localStorage.token});
+                }
+            }).catch((err) => {
+                return false; // this doesn't serve any purpose
+            })
         }
     }
 

@@ -23,7 +23,8 @@ new WebpackDevServer(webpack(config), {
     },
     proxy:{
         '/api/*': 'http://localhost:5000',
-        '/auth': 'http://localhost:5000'
+        '/auth': 'http://localhost:5000',
+        '/checkAuth' : 'http://localhost:5000'
     }
 }).listen(3000, 'localhost', function (err) {
     if (err) {
