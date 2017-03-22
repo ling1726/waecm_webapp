@@ -5,7 +5,7 @@ export default class App extends Component {
         render() {debugger
         return <div>
                 { this.props.nav }
-                { this.props.main }</div>
+                <div className={"container"}>{ this.props.main }</div></div>
     }
 }
 

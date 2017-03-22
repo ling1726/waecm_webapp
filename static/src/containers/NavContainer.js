@@ -6,14 +6,19 @@ import * as AuthActions from '../actions/index';
 
 export class NavContainer extends Component{
     
-    render(){ debugger
+    render(){ 
         const {isLogged, authActions} = this.props;
     
-        return <nav>
-                  <Auth 
-                    getAuthToken={authActions.getAuthToken}
-                    isLogged={isLogged}
-                    /> 
+        return <nav className={"nav-extended"}>
+                    <div className={"nav-wrapper"}>
+                    
+                    </div>
+                    <div className={"nav-content"}>
+                        <Auth 
+                        getAuthToken={authActions.getAuthToken}
+                        isLogged={isLogged}
+                        />
+                    </div> 
                 </nav>
     }
 

@@ -22,14 +22,14 @@ export function getCurrent(){
 }
 
 
-export function getAuthToken(loginData){ debugger
+export function getAuthToken(loginData){ 
     return dispatch => {
         dispatch({type: types.AUTH_REQUEST});
 
-        WebAPIUtils.getAuthToken(loginData).then((res) => { debugger
+        WebAPIUtils.getAuthToken(loginData).then((res) => { 
             localStorage.token = res.access_token;
             dispatch({type: types.AUTH_SUCCESS, token: res.access_token});
-        }).catch((err) => { debugger
+        }).catch((err) => { 
             dispatch({type: types.AUTH_FAILED});
         })
     }

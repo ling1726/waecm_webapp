@@ -19,10 +19,10 @@ export class CounterContainer extends Component{
     render(){ 
         const {value, counterActions} = this.props
 
-        return <div>
-                <h1>This is a counter</h1>
-                <h1>Counter is currently at {value}</h1>
-                <button type="button" onClick={this.handleIncrement}>increment</button> 
+        return <div className={"center-align"}>
+                <h2>The counter is currently at:</h2>
+                <h1>{value}</h1>
+                <button type="button" className={"btn waves-effect waves-light"} onClick={this.handleIncrement}>increment</button> 
                 </div>
     };
 }

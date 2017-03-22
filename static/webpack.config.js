@@ -3,6 +3,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
 module.exports = {
     devtool: 'eval-source-map',
@@ -22,6 +23,7 @@ module.exports = {
             inject: 'body',
             filename: 'index.html'
         }),
+        new HtmlWebpackIncludeAssetsPlugin({assets: ['../css/materialize.min.css','../js/jquery-3.2.0.min.js','../js/materialize.min.js'], append:true}),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
@@ -47,6 +49,10 @@ module.exports = {
             { 
                 test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
                 loader: "file-loader" 
-            }
+            },
+            { 
+                test: /\.css$/, 
+                loader: "style-loader!css-loader"
+             }
         ]
     }}
