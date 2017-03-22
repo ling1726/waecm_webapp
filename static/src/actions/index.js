@@ -3,12 +3,17 @@ import WebAPIUtils from '../utils/WebAPIUtils';
 
 export function increment(){
 	return dispatch =>{
-	    dispatch({type: types.COUNTER_INCREMENT_REQUEST});
+        dispatch({type: types.COUNTER_INCREMENT_REQUEST});
 
         WebAPIUtils.incrementCounter().then((res) => {
             dispatch({type: types.COUNTER_INCREMENT_SUCCESS, value: res.value});
         }).catch((err) => {
-            dispatch({type: types.COUNTER_INCREMENT_FAILED})
+            if(err.response.status === 401){
+                debugger
+                dispatch({type: types.COUNTER_INCREMENT_UNAUTHORIZED, error: 'please log in and try again!'})
+            }else{
+                dispatch({type: types.COUNTER_INCREMENT_FAILED})
+            }
         })
     	
 	}	
@@ -38,4 +43,13 @@ export function getAuthToken(loginData){
             dispatch({type: types.AUTH_FAILED});
         })
     }
+}
+
+export function checkAuthToken(){
+    return dispatch =>{ debugger
+        if(localStorage.token){
+            dispatch({type: types.AUTH_SUCCESS, token: localStorage.token});
+        }
+    }
+
 }

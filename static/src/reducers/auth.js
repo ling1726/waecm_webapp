@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 
 const initialState = {token: null, isLogged: false}
 
-export default function reducers(state = initialState, action){
+export default function reducers(state = initialState, action){debugger
     switch (action.type){
         case types.AUTH_REQUEST:
             return state;

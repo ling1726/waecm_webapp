@@ -22,6 +22,7 @@ export class CounterContainer extends Component{
         return <div className={"center-align"}>
                 <h2>The counter is currently at:</h2>
                 <h1>{value}</h1>
+                {this.props.error ? <div> {this.props.error} </div> : ""}
                 <button type="button" className={"btn waves-effect waves-light"} onClick={this.handleIncrement}>increment</button> 
                 </div>
     };
@@ -33,7 +34,8 @@ CounterContainer.propTypes = {
 
 function mapStateToProps(state){
     return{
-        value: state.counter.value
+        value: state.counter.value,
+        error: state.counter.error
     };
 }
 

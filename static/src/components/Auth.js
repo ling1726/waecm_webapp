@@ -28,12 +28,12 @@ export default class Auth extends Component{
                         <form onSubmit={this.handleAuth}>
                            <div className={"input-field col m4"}> 
                                 <input id="username" type="text" 
-                                    value={this.state.username} onChange={this.handleChangeUsername}/>
+                                    value={this.state.username} onChange={this.handleChangeUsername} placeholder="enter username"/>
                                 <label htmlFor="username" className={"black-text"}>username</label>
                             </div>
                             <div className={"input-field col m4"} style={{marginLeft:'35px'}}>
                                 <input id="password" type="password"  
-                                    value={this.state.password} onChange={this.handleChangePassword}/>
+                                    value={this.state.password} onChange={this.handleChangePassword} placeholder="enter password"/>
                                 <label htmlFor="password" className={"black-text"}>password</label>
                             </div>
                             <button type="submit" className={"btn waves-effect waves-light"}>login </button>

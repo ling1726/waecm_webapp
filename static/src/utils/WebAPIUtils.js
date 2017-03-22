@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 export default class {
-    static incrementCounter(){
+    static incrementCounter(){debugger
         return axios({
             url: '/api/counter',
-            method: 'post'
+            method: 'post',
+            headers:{'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
             return res.data
         })
