@@ -1,6 +1,8 @@
 FROM python:2.7.13-alpine
 MAINTAINER e1027203@student.tuwien.ac.at
 
+RUN sudo 
+
 RUN apk update && apk upgrade && apk add nodejs
 
 COPY . /app
