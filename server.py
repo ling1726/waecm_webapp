@@ -60,6 +60,11 @@ def resetCounter():
     db_session.commit()
     return jsonify(value=counter.value)
 
+@app.route('/checkAuth', methods=['POST'])
+@jwt_required()
+def checkAuth():
+    return jsonify(value=true)
+
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0')

@@ -33,4 +33,14 @@ export default class {
             return res.data;
         })
     }
+
+    static checkAuthToken(){
+        return axios({
+            url: '/checkAuth',
+            method: 'post',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
 }
