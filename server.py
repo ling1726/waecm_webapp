@@ -63,8 +63,8 @@ def resetCounter():
 @app.route('/checkAuth', methods=['POST'])
 @jwt_required()
 def checkAuth():
-    return jsonify(value=true)
+    return jsonify(value=True)
 
 if __name__ == '__main__':
     init_db()
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=8080)

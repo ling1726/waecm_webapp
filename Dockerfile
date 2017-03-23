@@ -14,7 +14,7 @@ RUN mkdir -p /var/run/mysqld
 
 COPY . /app
 
-#RUN pip install -r /app/requirements.txt
+RUN pip install -r /app/requirements.txt
 
 RUN adduser --disabled-password --gecos "" web
 RUN chown -R web:web /app
@@ -24,12 +24,7 @@ RUN chown -R web:web /app
 
 
 
-USER web
 WORKDIR /app
 
-#RUN cd static && npm install && npm run build-prod
-
-USER root
-
-CMD /app/startup.sh
-#CMD python server.py
+EXPOSE 8080
+ENTRYPOINT ["./docker-entrypoint.sh"]

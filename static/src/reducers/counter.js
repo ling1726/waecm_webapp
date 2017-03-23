@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 
 const initialState = {value: 0};
 
-export default function reducers(state = initialState, action){ 
+export default function reducers(state = initialState, action){ debugger
     switch (action.type){
         case types.COUNTER_REQUEST:
             return state;
@@ -11,7 +11,7 @@ export default function reducers(state = initialState, action){
         case types.COUNTER_FAILED:
             return {...state};
         case types.COUNTER_INCREMENT_REQUEST:
-            return { value: action.value};
+            return { ...state};
         case types.COUNTER_INCREMENT_FAILED:
             return {...state};
         case types.COUNTER_INCREMENT_SUCCESS:
