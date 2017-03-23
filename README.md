@@ -11,7 +11,7 @@ It can also be chained with the ``deploy`` option to start the application
 > $ (sudo) docker run -p 8080:8080 waecm-bsp1 build deploy
 
 Or ``deploy`` can simply be used on its own
-> $ (sudo) docker rum -p 8080:8080 waecm-bsp1 deploy
+> $ (sudo) docker run -p 8080:8080 waecm-bsp1 deploy
 
 The ``-p 8080:8080`` option allows docker to forward requests through localhost
 where the app can be reached by the url ``http://localhost:8080``
@@ -37,6 +37,7 @@ The app uses JWT authentication
 The authentication service is not considered a part of the API and can be reached through the root path:
 
 > http://localhost:8080/auth
+
 A post request that is successfully authenticated to the above address will return a valid JWT token
 
 ### Frontend
