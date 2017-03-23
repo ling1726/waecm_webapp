@@ -40,6 +40,8 @@ The authentication service is not considered a part of the API and can be reache
 
 A post request that is successfully authenticated to the above address will return a valid JWT token
 
+The JWT token must be sent as an authorization header **with the JWT prefix and NOT the Bearer prefix** with requests to protected routes
+> {Authorization: JWT xxxxxxxxxxxxxxxxx}
 ### Frontend
 The frontend is a ReactJS client using Redux architecture. Styling is handled by the materialize library.
 Source code can be found under ``/static/src`` and production bundled files under ``/static/prod``
