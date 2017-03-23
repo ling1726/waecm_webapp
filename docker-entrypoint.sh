@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+service mysql start && sleep 15oc
+mysqladmin --user=root --password=rootpw create waecm
+echo "GRANT ALL PRIVILEGES ON waecm.* To 'waecmuser'@'localhost' IDENTIFIED BY 'waecmpassword';" | mysql -u root --password=rootpw
+
+su web
+
 function build(){
 	echo "installing dependencies and building app"
 	pip install -r requirements.txt

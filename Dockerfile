@@ -14,14 +14,8 @@ RUN mkdir -p /var/run/mysqld
 
 COPY . /app
 
-RUN pip install -r /app/requirements.txt
-
 RUN adduser --disabled-password --gecos "" web
 RUN chown -R web:web /app
-
-
-
-
 
 
 WORKDIR /app

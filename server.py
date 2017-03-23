@@ -38,6 +38,7 @@ def getCounter():
     if counter is None:
         counter = Counter()
         db_session.add(counter)
+        db_session.commit()
 
     return jsonify(value=counter.value)
 
