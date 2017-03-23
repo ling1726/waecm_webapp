@@ -27,8 +27,9 @@ RUN echo "GRANT ALL PRIVILEGES ON waecm.* To 'waecmuser'@'localhost' IDENTIFIED 
 USER web
 WORKDIR /app
 
-RUN cd static && npm install && npm run build-prod
+RUN apt install nodejs
+RUN apt install npm
 
 
-
-CMD python server.py
+EXPOSE 8080
+ENTRYPOINT ["./docker-entrypoint.sh"]
