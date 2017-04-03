@@ -5,62 +5,48 @@ from flask_jwt import JWT, jwt_required, current_identity
 from database import db_session, init_db
 from models import *
 from auth import *
+from api import *
 
-
-# create application
+######################################
+### CREATE APP
+#####################################
 app = Flask(__name__, template_folder='./static/prod')
 app.secret_key = os.urandom(12)
 
-# jwt
+######################################
+# JWT CONFIG
+######################################
 jwt = JWT(app, authenticate, identity)
 
-#config
+
+
+######################################
+### APP CONFIG
+######################################
 app.config.update(dict(
     SECRET_KEY='development',
     USERNAME='G10WAECM',
     PASSWORD='toto'
 ))
 
-
-
 # to remove db_session at the end of a request
 @app.teardown_appcontext
 def shutdown_session(exception = None):
     db_session.remove()
 
+
+####################################### 
+### REGISTER API ROUTES      
+#######################################
+app.register_blueprint(counterAPI)
+
+
+# main route to serve react client
 @app.route('/')
 def home():
     return render_template('index.html')    
 
-@app.route('/api/counter', methods=['GET'])
-def getCounter():
-    counter = db_session.query(Counter).first()
-    if counter is None:
-        counter = Counter()
-        db_session.add(counter)
-        db_session.commit()
-
-    return jsonify(value=counter.value)
-
-
-@app.route('/api/counter', methods=['POST'])
-@jwt_required()
-def incrementCounter():
-    counter = db_session.query(Counter).first()
-    counter.increment()
-    db_session.commit()
-    return jsonify(value=counter.value)
-
-
-
-@app.route('/api/counter/reset', methods=['POST'])
-@jwt_required()
-def resetCounter():
-    counter = db_session.query(Counter).first()
-    counter.reset()
-    db_session.commit()
-    return jsonify(value=counter.value)
-
+# route to check authenticity of jwt token
 @app.route('/checkAuth', methods=['POST'])
 @jwt_required()
 def checkAuth():
