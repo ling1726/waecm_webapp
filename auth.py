@@ -1,5 +1,5 @@
 from werkzeug.security import safe_str_cmp
-from models import User
+from models import User 
 
 user = User(1, 'user', 'password')
 
