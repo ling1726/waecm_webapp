@@ -1,24 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {Link} from 'react-router';
+import logo from '../../img/logo.png';
 import Auth from '../components/Auth';
-import * as AuthActions from '../actions/index';
 
 export class NavContainer extends Component{
     
     render(){ 
-        const {isLogged, authActions} = this.props;
+        const logoStyle = {maxHeight: '64px', padding: '15px'}
     
         return <nav className={"nav-extended"}>
                     <div className={"nav-wrapper"}>
-                    
+                        <Link to="/" className="brand-logo">
+                            <img src={logo} style={logoStyle}/>
+                        </Link>
                     </div>
-                    <div className={"nav-content"}>
-                        <Auth 
-                        getAuthToken={authActions.getAuthToken}
-                        isLogged={isLogged}
-                        />
-                    </div> 
+                                        
                 </nav>
     }
 
@@ -26,13 +24,11 @@ export class NavContainer extends Component{
 
 function mapStateToProps(state){
     return{
-        isLogged: state.auth.isLogged
     };
 }
 
 function mapDispatchToProps(dispatch){
     return{
-        authActions: bindActionCreators(AuthActions, dispatch)
     };
 }
 

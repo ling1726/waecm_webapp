@@ -20,18 +20,14 @@ export default class Auth extends Component{
     }
 
     render(){ 
-        const {isLogged} = this.props;
-
-        let login = null;
-        if(!isLogged){
-            login = <div className={"row"}>
+        return     <div>
                         <form onSubmit={this.handleAuth}>
-                           <div className={"input-field col m4"}> 
+                           <div className={"input-field"}> 
                                 <input id="username" type="text" 
                                     value={this.state.username} onChange={this.handleChangeUsername} placeholder="enter username"/>
                                 <label htmlFor="username" className={"black-text"}>username</label>
                             </div>
-                            <div className={"input-field col m4"} style={{marginLeft:'35px'}}>
+                            <div className={"input-field"} >
                                 <input id="password" type="password"  
                                     value={this.state.password} onChange={this.handleChangePassword} placeholder="enter password"/>
                                 <label htmlFor="password" className={"black-text"}>password</label>
@@ -39,11 +35,6 @@ export default class Auth extends Component{
                             <button type="submit" className={"btn waves-effect waves-light"}>login </button>
                         </form>
                     </div>
-        }
-        else{
-           login = <p>user is logged in</p>
-        }
 
-        return login;
     }
 }

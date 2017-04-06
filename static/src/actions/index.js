@@ -1,6 +1,14 @@
 import * as types from './types';
 import WebAPIUtils from '../utils/WebAPIUtils';
 
+
+/* 
+    THE USE OF THIS FILE IS NOW DEPRECATED
+    PLEASE PUT ALL ACTIONS INTO SEPARATED LOGICALLY
+    SEPARATED FILES
+*/
+
+/*
 export function increment(){
 	return dispatch =>{
         dispatch({type: types.COUNTER_INCREMENT_REQUEST});
@@ -58,4 +66,4 @@ export function checkAuthToken(){
         }
     }
 
-}
+}*/
