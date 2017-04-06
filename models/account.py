@@ -9,15 +9,14 @@ class Account(Base):
     iban = Column(String(34), nullable = False)
     bic = Column(String(11), nullable = False)
     
-    userId = Column(Integer), ForeignKey("accounts.id")
+    userId = Column(Integer, ForeignKey("users.id"))
     user = relationship("User", back_populates="account")
     
-    outTransfers = relationship("Transfer", back_populates="senderAccount")  
-    inTransfers = relationship("Transfer", back_populates = "recipientAccount")
+    outTransfers = relationship("Transfer", back_populates="senderAccount",foreign_keys='Transfer.senderAccountId')  
+    inTransfers = relationship("Transfer", back_populates = "recipientAccount",foreign_keys='Transfer.recipientAccountId')
 
     # constructor - DONT initialize id
-    def __init__(self, iban, bic, user):
+    def __init__(self, iban, bic):
         self.iban = iban
         self.bic = bic
-        self.user = user
 

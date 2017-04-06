@@ -2,7 +2,7 @@ import os, logging
 from flask import Flask, session, jsonify,  request, session, redirect, url_for, Response, render_template 
 from json import dumps
 from flask_jwt import JWT, jwt_required, current_identity
-from database import db_session, init_db
+from database import db_session, init_db, create_testdata
 from models import *
 from auth import *
 from api import *
@@ -54,4 +54,5 @@ def checkAuth():
 
 if __name__ == '__main__':
     init_db()
+    create_testdata()
     app.run(host='0.0.0.0', port=8080)
