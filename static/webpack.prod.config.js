@@ -15,7 +15,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/prod/'),
         filename: '[name].js',
-        publicPath: '/'
+        publicPath: '/static/prod/'
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -25,10 +25,6 @@ module.exports = {
         }),
         new HtmlWebpackIncludeAssetsPlugin({
             assets: [
-                'static/prod/main.js',
-                'static/css/materialize.min.css',
-                'static/js/jquery-3.2.0.min.js',
-                'static/js/materialize.min.js',
                 ], 
             append:true
         }),
