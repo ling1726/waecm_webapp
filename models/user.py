@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from base import Base
+import bcrypt
 
 class User(Base):
     # table information declaration
@@ -17,9 +18,12 @@ class User(Base):
     # constructor - DONT initialize id
     def __init__(self, email, password, balance, limit):
         self.email = email 
-        self.password = password
+        self.password = bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt())
         self.balance = balance
         self.limit = limit
+
+    def verify_password(self, password):
+        return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
     # equivalent of java's toString() method
     def __str__(self):
