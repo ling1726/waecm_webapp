@@ -94,6 +94,7 @@ node_modules
 # swp files
 *.swp
 /static/dist/
+/static/prod/
 /.idea/
 /data/
 
