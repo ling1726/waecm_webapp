@@ -1,21 +1,9 @@
 version: '2'
 services:
-  #webapp:
-    #build: .
-    #ports:
-      #- "8080:8080"
-    #command: deploy
-
-  mysql:
-    image: mysql
-    volumes:
-      - ./data:/var/lib/mysql
+  webapp:
+    build: .
     ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=yes
-      - MYSQL_DATABASE=waecm
-      - MYSQL_USER=waecmuser
-      - MYSQL_PASSWORD=waecmpassword
-      - MYSQL_ROOT_HOST=%
+      - "8080:8080"
+    command: deploy
+
 
