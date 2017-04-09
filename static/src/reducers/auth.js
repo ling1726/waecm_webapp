@@ -1,15 +1,15 @@
 import * as types from '../actions/types';
 
-const initialState = {token: null, isLogged: false}
+const initialState = {token: null, isLogged: false, error: false}
 
-export default function reducers(state = initialState, action){debugger
+export default function reducers(state = initialState, action){
     switch (action.type){
         case types.AUTH_REQUEST:
             return state;
         case types.AUTH_SUCCESS:
-            return {...state, token: action.token, isLogged: true};
+            return {...state, token: action.token, isLogged: true, error: false};
         case types.AUTH_FAILED:
-            return state;
+            return {...state, error: true};
         default:
             return state;
     }

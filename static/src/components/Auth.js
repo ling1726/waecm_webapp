@@ -19,7 +19,16 @@ export default class Auth extends Component{
         this.setState({password: event.target.value})
     }
 
-    render(){ 
+
+    render(){
+        let errorSpan = null;
+        if(this.props.authError){
+            errorSpan = <span>Login failed!</span>
+
+        }else{
+            errorSpan = <span></span>
+        }
+
         return     <div>
                         <form onSubmit={this.handleAuth}>
                            <div className={"input-field"}> 
@@ -33,6 +42,7 @@ export default class Auth extends Component{
                                 <label htmlFor="password" className={"black-text"}>password</label>
                             </div>
                             <button type="submit" className={"btn waves-effect waves-light"}>login </button>
+                            {errorSpan}
                         </form>
                     </div>
 

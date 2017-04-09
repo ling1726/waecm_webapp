@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {bindActionCreators} from 'redux';
-import * as AuthActions from '../actions/index'
+import * as AuthActions from '../actions/auth'
 import { connect } from 'react-redux';
 
 export class App extends Component {
