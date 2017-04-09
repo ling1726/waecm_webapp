@@ -1,8 +1,9 @@
 from werkzeug.security import safe_str_cmp
-from models import User as user
+from models import User
 
 def authenticate(username, password):
-    if username == user.email and safe_str_cmp(user.password.encode('utf-8'), password.encode('utf-8')):
+    user = User.query.filter_by(email=username).first()
+    if user is not None and user.verify_password(password):
         return user
 
 def identity(payload):
