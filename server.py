@@ -59,4 +59,8 @@ def checkAuth():
 if __name__ == '__main__':
     init_db()
     create_testdata()
-    app.run(host='0.0.0.0', port=8080)
+    if os.environ['DEV']:
+        app.run(host='0.0.0.0', port=8080, debug=True)
+    else:
+        app.run(host='0.0.0.0', port=8080)
+
