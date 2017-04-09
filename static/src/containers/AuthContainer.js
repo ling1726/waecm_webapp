@@ -15,14 +15,18 @@ export class AuthContainer extends Component{
                 <h5>Please log in to access online banking services</h5><br/>
                 <Auth 
                     getAuthToken={authActions.getAuthToken}
+                    authError={this.props.authError}
                 />
                 </div>
+
     };
 }
 
 function mapStateToProps(state){
+
     return{
-    };
+        authError: state.auth.error
+    }
 }
 
 function mapDispatchToProps(dispatch){
