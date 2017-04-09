@@ -10,7 +10,11 @@ from api import *
 ######################################
 ### CREATE APP
 #####################################
-app = Flask(__name__, template_folder='./static/prod')
+if os.environ['DEV']:
+    app = Flask(__name__, template_folder='./static/dist')
+else:
+    app = Flask(__name__, template_folder='./static/prod')
+
 app.secret_key = os.urandom(12)
 
 ######################################

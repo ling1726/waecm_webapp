@@ -11,7 +11,7 @@ export class AuthContainer extends Component{
         const {authActions} = this.props
 
         return  <div>
-                <h2>Welcome.</h2>
+                <h2>Welcome to PiggyBank Inc.</h2>
                 <h5>Please log in to access online banking services</h5><br/>
                 <Auth 
                     getAuthToken={authActions.getAuthToken}

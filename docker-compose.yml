@@ -4,7 +4,7 @@ services:
     build: .
     ports:
       - "8080:8080"
-    command: deploy
-#    volumes:
-#      - "./:/app"
+    command: dev
+    volumes:
+      - "./:/app"
 
