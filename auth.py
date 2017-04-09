@@ -8,5 +8,6 @@ def authenticate(username, password):
 
 def identity(payload):
     userId = payload['identity']
+    user = User.query.get(userId)
     if userId == user.id: return user.id
     return None
