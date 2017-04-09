@@ -46,8 +46,9 @@ app.register_blueprint(counterAPI)
 
 
 # main route to serve react client
-@app.route('/')
-def home():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def home(path):
     return render_template('index.html')    
 
 # route to check authenticity of jwt token
