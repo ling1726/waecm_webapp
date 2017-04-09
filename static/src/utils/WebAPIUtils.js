@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default class {
-    static incrementCounter(){debugger
+    static incrementCounter(){
         return axios({
             url: '/api/counter',
             method: 'post',
@@ -41,6 +41,20 @@ export default class {
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
             return res.data
+        })
+    }
+
+    static getUserData(){
+        return axios({
+            url: '/api/user',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+
+            return res.data
+        }).catch((err) => {
+
+            return err
         })
     }
 }
