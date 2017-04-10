@@ -12,7 +12,7 @@ from api import *
 ######################################
 ### CREATE APP
 #####################################
-if os.environ['DEV']:
+if os.environ['DEV'] == 'true':
     app = Flask(__name__, template_folder='./static/dist')
 else:
     app = Flask(__name__, template_folder='./static/prod')
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     app.logger.info('Stating up Flask')
     init_db()
     create_testdata()
-    if os.environ['DEV']:
+    if os.environ['DEV'] == 'true':
         app.run(host='0.0.0.0', port=8080, debug=True)
     else:
         app.run(host='0.0.0.0', port=8080)
