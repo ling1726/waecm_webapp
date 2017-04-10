@@ -16,7 +16,7 @@ export function getAuthToken(loginData){
 }
 
 export function checkAuthToken(){
-    return dispatch =>{ debugger
+    return dispatch =>{
         if(localStorage.token){
             WebAPIUtils.checkAuthToken().then((res) => {
                 if(res){
@@ -28,4 +28,13 @@ export function checkAuthToken(){
         }
     }
 
+}
+
+export function logout() {
+    return dispatch => {
+        if(localStorage.token){
+            delete localStorage.token;
+            dispatch({type: types.AUTH_LOGOUT, isLogged: false})
+        }
+    }
 }

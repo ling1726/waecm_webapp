@@ -8,9 +8,9 @@ import configureStore from './store/configureStore';
 import routes from './routes'
 
 /* initial states */
-let state = {}
+let state = {};
 
-state.counter = {value: 0}
+state.counter = {value: 0};
 
  
 const store = configureStore(state);

@@ -7,10 +7,12 @@ from models import *
 from auth import *
 from api import *
 
+
+
 ######################################
 ### CREATE APP
 #####################################
-if os.environ['DEV']:
+if os.environ['DEV'] == 'true':
     app = Flask(__name__, template_folder='./static/dist')
 else:
     app = Flask(__name__, template_folder='./static/prod')
@@ -21,7 +23,6 @@ app.secret_key = os.urandom(12)
 # JWT CONFIG
 ######################################
 jwt = JWT(app, authenticate, identity)
-
 
 
 ######################################
@@ -43,11 +44,13 @@ def shutdown_session(exception = None):
 ### REGISTER API ROUTES      
 #######################################
 app.register_blueprint(counterAPI)
-
+app.register_blueprint(userAPI)
+app.register_blueprint(accountAPI)
 
 # main route to serve react client
-@app.route('/')
-def home():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def home(path):
     return render_template('index.html')    
 
 # route to check authenticity of jwt token
@@ -57,9 +60,10 @@ def checkAuth():
     return jsonify(value=True)
 
 if __name__ == '__main__':
+    app.logger.info('Stating up Flask')
     init_db()
     create_testdata()
-    if os.environ['DEV']:
+    if os.environ['DEV'] == 'true':
         app.run(host='0.0.0.0', port=8080, debug=True)
     else:
         app.run(host='0.0.0.0', port=8080)

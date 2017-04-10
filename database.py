@@ -32,9 +32,9 @@ def create_testdata():
     account1 = Account("AT551000100000000001","BANKATW1")
     account2 = Account("AT551000100000000002","BANKATW1")
     account3 = Account("AT551000100000000003","BANKATW1")
-    user1 = User("maxmustermann@gmail.com", "maxmustermann", 0, 1000)
-    user2 = User("gabimusterfrau@gmail.com", "gabimusterfrau", 0, 3000)
-    user3 = User("erikatest@gmail.com", "erikatest", 0, 2000)
+    user1 = User("maxmustermann@gmail.com", "maxmustermann", 2437.23, 1000)
+    user2 = User("gabimusterfrau@gmail.com", "gabimusterfrau", 503.45, 3000)
+    user3 = User("erikatest@gmail.com", "erikatest", 23.53, 2000)
     account1.user = user1
     account2.user = user2
     account3.user = user3

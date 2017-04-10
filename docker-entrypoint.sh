@@ -1,4 +1,5 @@
 #!/bin/bash
+export DEV=false
 
 
 service mysql start && sleep 15oc

@@ -7,22 +7,33 @@ import * as AuthActions from '../actions/auth';
 
 export class AuthContainer extends Component{
 
+    componentWillReceiveProps(nextProps){
+        if(!this.props.isLogged && nextProps.isLogged){
+            browserHistory.push('/overview');
+        }
+    }
+
     render(){ 
-        const {authActions} = this.props
+        const {authActions} = this.props;
 
         return  <div>
                 <h2>Welcome to PiggyBank Inc.</h2>
                 <h5>Please log in to access online banking services</h5><br/>
                 <Auth 
                     getAuthToken={authActions.getAuthToken}
+                    authError={this.props.authError}
                 />
                 </div>
+
     };
 }
 
 function mapStateToProps(state){
+
     return{
-    };
+        authError: state.auth.error,
+        isLogged: state.auth.isLogged
+    }
 }
 
 function mapDispatchToProps(dispatch){
