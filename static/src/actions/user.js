@@ -7,10 +7,8 @@ export function getUserData(){
         dispatch({type: types.USER_GET_DATA_REQUEST});
 
         WebAPIUtils.getUserData().then((res) => {
-            debugger
             dispatch({type: types.USER_GET_DATA_SUCCESS, user: res});
         }).catch((err) => {
-            debugger
             dispatch({type: types.USER_GET_DATA_FAILED})
         })
     }

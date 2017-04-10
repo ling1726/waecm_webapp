@@ -10,6 +10,8 @@ export default function reducers(state = initialState, action){
             return {...state, token: action.token, isLogged: true, error: false};
         case types.AUTH_FAILED:
             return {...state, error: true};
+        case types.AUTH_LOGOUT:
+            return {...state, isLogged: false};
         default:
             return state;
     }

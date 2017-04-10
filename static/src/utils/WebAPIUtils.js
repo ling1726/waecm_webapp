@@ -57,4 +57,18 @@ export default class {
             return err
         })
     }
+
+
+    static getAccountData(){
+        return axios({
+            url: '/api/account',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        }).catch((err) => {
+
+            return err
+        })
+    }
 }

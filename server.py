@@ -45,6 +45,7 @@ def shutdown_session(exception = None):
 #######################################
 app.register_blueprint(counterAPI)
 app.register_blueprint(userAPI)
+app.register_blueprint(accountAPI)
 
 # main route to serve react client
 @app.route('/', defaults={'path': ''})

@@ -12,32 +12,11 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 userAPI = Blueprint('userAPI', __name__)
 
 @userAPI.route('/api/user', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def getUserData():
-    userId = 'maxmustermann@gmail.com' #current_identity
-    user = db_session.query(User, User.email, User.balance, User.limit).filter_by(email=userId).first()
+    logger.info('providing user data')
 
-    logger.info('found user')
-    logger.info(user)
-
+    user = db_session.query(User, User.email, User.balance, User.limit).filter_by(id=str(current_identity)).first()
     return jsonify(email=user.email, balance=user.balance, limit=user.limit)
 
-
-# @counterAPI.route('/api/counter', methods=['POST'])
-# @jwt_required()
-# def incrementCounter():
-#     counter = db_session.query(Counter).first()
-#     counter.increment()
-#     db_session.commit()
-#     return jsonify(value=counter.value)
-#
-#
-#
-# @counterAPI.route('/api/counter/reset', methods=['POST'])
-# @jwt_required()
-# def resetCounter():
-#     counter = db_session.query(Counter).first()
-#     counter.reset()
-#     db_session.commit()
-#     return jsonify(value=counter.value)
 

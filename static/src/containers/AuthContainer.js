@@ -7,8 +7,14 @@ import * as AuthActions from '../actions/auth';
 
 export class AuthContainer extends Component{
 
+    componentWillReceiveProps(nextProps){
+        if(!this.props.isLogged && nextProps.isLogged){
+            browserHistory.push('/overview');
+        }
+    }
+
     render(){ 
-        const {authActions} = this.props
+        const {authActions} = this.props;
 
         return  <div>
                 <h2>Welcome to PiggyBank Inc.</h2>
@@ -25,7 +31,8 @@ export class AuthContainer extends Component{
 function mapStateToProps(state){
 
     return{
-        authError: state.auth.error
+        authError: state.auth.error,
+        isLogged: state.auth.isLogged
     }
 }
 

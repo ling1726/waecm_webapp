@@ -29,3 +29,12 @@ export function checkAuthToken(){
     }
 
 }
+
+export function logout() {
+    return dispatch => {
+        if(localStorage.token){
+            delete localStorage.token;
+            dispatch({type: types.AUTH_LOGOUT, isLogged: false})
+        }
+    }
+}
