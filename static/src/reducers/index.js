@@ -3,13 +3,15 @@ import {combineReducers} from 'redux';
 import counter from './counter';
 import auth from './auth';
 import user from './user';
-import account from './account'
+import account from './account';
+import stats from './stats';
 
 const rootReducer = combineReducers({
     counter,
     auth,
     user,
     account,
+    stats,
     routing
 });
 

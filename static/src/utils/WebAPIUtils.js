@@ -71,4 +71,23 @@ export default class {
             return err
         })
     }
+
+
+    static getStatsData(interval){
+        return axios({
+            url: '/api/stats',
+            method: 'get',
+            params: {
+                interval: interval,
+                diff: false
+            },
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        }).catch((err) => {
+
+            return err
+        })
+    }
+
 }

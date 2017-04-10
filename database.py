@@ -88,4 +88,22 @@ def create_testdata():
     db_session.add(transfer6)
     db_session.add(transfer7)
     db_session.add(transfer8)
+
+    db_session.add(Transfer(904.40,"2017-02-22 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(94.40,"2017-03-22 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(9.20,"2017-04-02 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(1002.40,"2017-01-22 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(504.40,"2016-12-22 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(94.40,"2016-10-12 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(90.40,"2016-11-22 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(24.40,"2017-03-13 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(404.40,"2017-03-08 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(14.40,"2016-09-22 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(847.40,"2016-09-02 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(104.40,"2016-11-15 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(25.40,"2016-12-23 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(98.40,"2016-12-24 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+    db_session.add(Transfer(16.40,"2017-01-22 12:12:00","Ueberweisung 4",account1,account3,"Mustermann Max"))
+
+
     db_session.commit()
