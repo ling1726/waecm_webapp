@@ -28,9 +28,9 @@ export class NavContainer extends Component{
                             <img src={logo} style={logoStyle}/>
                         </Link>
                         <ul id="nav-mobile" className="right">
-                            <li><a href="/overview">Overview</a></li>
-                            <li><a href="#">Transactions</a></li>
-                            <li><a href="#">New transfer</a></li>
+                            <li><Link to="/overview">Overview</Link></li>
+                            <li><Link to="/activity">Activity</Link></li>
+                            <li><Link to="#">New transfer</Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
                     </div>

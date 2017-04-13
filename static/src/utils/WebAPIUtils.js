@@ -50,11 +50,7 @@ export default class {
             method: 'get',
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
-
             return res.data
-        }).catch((err) => {
-
-            return err
         })
     }
 
@@ -66,12 +62,18 @@ export default class {
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
             return res.data
-        }).catch((err) => {
-
-            return err
         })
     }
 
+    static getActivity(){
+        return axios({
+            url: '/api/account/activity',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
 
     static getStatsData(interval){
         return axios({
@@ -91,3 +93,4 @@ export default class {
     }
 
 }
+
