@@ -72,11 +72,11 @@ def create_testdata():
     transfer19 = Transfer(22.99,"2017-03-17 19:22:00","Ueberweisung 19",account1,account4,"Interspar Gourmet")
 
 
-    tag1 = Tag("Freizeit")
-    tag2 = Tag("Versicherung")
-    tag3 = Tag("Haus")
-    tag4 = Tag("Abonnements")
-    tag5 = Tag("Einkauf")
+    tag1 = Tag("Leisure")
+    tag2 = Tag("Insurance")
+    tag3 = Tag("Accomodation")
+    tag4 = Tag("Subscriptions")
+    tag5 = Tag("Shopping")
 
     transfer1.tags.append(tag1)
     transfer1.tags.append(tag4)
