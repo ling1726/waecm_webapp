@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import OverviewCard from '../components/OverviewCard'
+import ActivityList from '../components/ActivityList';
 import { bindActionCreators } from 'redux';
 import * as UserActions from '../actions/user'
 import * as AccountActions from '../actions/account'
@@ -10,7 +11,7 @@ export class ActivityContainer extends Component{
     componentDidMount(){
         const {userActions, accountActions} = this.props;
         userActions.getUserData();
-        accountActions.getAccountData();
+        accountActions.getAccountData(); 
         accountActions.getActivity();
     }
 
@@ -30,8 +31,7 @@ export class ActivityContainer extends Component{
                     balance={balance}
                     limit={limit}
                 />
-
-                <h2>Activity - past transactions</h2>
+                <ActivityList transfers={transfers}/>
         </div>
     };
 }

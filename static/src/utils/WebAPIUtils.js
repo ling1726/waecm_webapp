@@ -78,7 +78,7 @@ export default class {
             method: 'get',
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
-            res.data
+            return res.data
         })
     }
 

@@ -2,7 +2,8 @@ import * as types from '../actions/types';
 
 const initialState = {
     iban: null,
-    bic:null
+    bic:null,
+    transfers: []
 };
 
 export default function reducers(state = initialState, action){

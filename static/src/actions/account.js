@@ -19,9 +19,8 @@ export function getAccountData(){
 export function getActivity(){
     return dispatch =>{
         dispatch({type: types.ACCOUNT_GET_ACTIVITY_REQUEST});
-        
-        WebAPI.getActivity().then((res) => {
-            dispatch({type: types.ACCOUNT_GET_ACTIVITY_SUCCESS}, transfers: res);
+        WebAPIUtils.getActivity().then((res) => { 
+            dispatch({type: types.ACCOUNT_GET_ACTIVITY_SUCCESS, transfers: res.transfers});
         }).catch((err) => {
             dispatch({type: types.ACCOUNT_GET_ACTIVITY_FAILED})
         })

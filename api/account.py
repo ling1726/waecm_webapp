@@ -30,8 +30,8 @@ def getActivity():
     allTransfers = []
     
     for transfer in inTransfers:
-        allTransfers.append({'amount': str(transfer.amount), 'timestamp': transfer.timestamp, 'comment': transfer.comment, 'senderName': transfer.senderName})
+        allTransfers.append({'id': transfer.id,'amount': str(transfer.amount), 'date': transfer.getReadableDate(),'timestamp':transfer.getTimestamp(),'comment': transfer.comment, 'externalParty': transfer.senderName, 'type': 'in'})
 
     for transfer in outTransfers:
-        allTransfers.append({'amount': str(-transfer.amount), 'timestamp': transfer.timestamp, 'comment': transfer.comment, 'senderName': transfer.senderName})
+        allTransfers.append({'id': transfer.id,'amount': str(transfer.amount), 'date': transfer.getReadableDate(),'timestamp':transfer.getTimestamp(), 'comment': transfer.comment, 'externalParty': transfer.getRecipientName(),'type':'out'})
     return jsonify(transfers=allTransfers)
