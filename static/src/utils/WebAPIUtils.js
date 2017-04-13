@@ -50,11 +50,7 @@ export default class {
             method: 'get',
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
-
             return res.data
-        }).catch((err) => {
-
-            return err
         })
     }
 
@@ -66,9 +62,6 @@ export default class {
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
             return res.data
-        }).catch((err) => {
-
-            return err
         })
     }
 
