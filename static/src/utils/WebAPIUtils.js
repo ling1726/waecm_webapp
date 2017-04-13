@@ -71,4 +71,16 @@ export default class {
             return err
         })
     }
+
+    static getActivity(){
+        return axios({
+            url: '/api/account/activity',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
 }
+
