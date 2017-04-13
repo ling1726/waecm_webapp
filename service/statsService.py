@@ -18,12 +18,12 @@ class StatsService:
 
 
         data = db_session\
-            .query(sa.func.year(Transfer.timestamp),
-                   sa.func.month(Transfer.timestamp),
+            .query(sa.func.year(Transfer.transferDateTime),
+                   sa.func.month(Transfer.transferDateTime),
                    sa.func.sum(Transfer.amount).label('total'))\
             .filter_by(senderAccountId=str(accID.id))\
-            .group_by(sa.func.year(Transfer.timestamp),
-                      sa.func.month(Transfer.timestamp))\
+            .group_by(sa.func.year(Transfer.transferDateTime),
+                      sa.func.month(Transfer.transferDateTime))\
             .all()
 
         result = []
