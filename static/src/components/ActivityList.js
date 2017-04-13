@@ -23,7 +23,10 @@ export default class ActivityList extends Component{
                                     externalParty={transfer.externalParty}
                                     amount={transfer.amount}
                                     date={transfer.date}
+                                    time = {transfer.time}
                                     type={transfer.type}
+                                    tags={transfer.tags}
+                                    comment={transfer.comment}
                                 />
                                 )
                             })            

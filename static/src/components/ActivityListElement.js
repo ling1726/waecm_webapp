@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import TagList from './TagList';
 
 export default class ActivityListElement extends Component{
     constructor(props){
@@ -9,9 +10,9 @@ export default class ActivityListElement extends Component{
 
         let amountDisplay = null
         if(this.props.type === 'out'){
-            amountDisplay = <span className="secondary-content red-text text- accent-4" >-{this.props.amount} €</span>
+            amountDisplay = <h5 className="secondary-content red-text text- accent-4" >-{this.props.amount} €</h5>
         }else{
-            amountDisplay = <span className="secondary-content green-text text-accent-4" >+{this.props.amount} €</span>
+            amountDisplay = <h5 className="secondary-content green-text text-accent-4" >+{this.props.amount} €</h5>
         }
          
         return     <li className="collection-item">
@@ -22,6 +23,14 @@ export default class ActivityListElement extends Component{
             <div>
                 <span>{this.props.date}</span>
             </div>
+            <div>
+                <span>{this.props.time}</span>
+            </div>
+
+            <div>
+                <span>{this.props.comment}</span>
+            </div>
+            <TagList tags={this.props.tags}/>
         </li>
 
     }
