@@ -40,7 +40,10 @@ class Transfer(Base):
         return recipientName
 
     def getReadableDate(self):
-        return self.transferDateTime.strftime('%Y-%m-%d %H:%M')
+        return self.transferDateTime.strftime('%Y-%m-%d')
+
+    def getTime(self):
+        return self.transferDateTime.strftime('%H:%M')
 
     def getTimestamp(self):
         return int(time.mktime(self.transferDateTime.timetuple()))*1000

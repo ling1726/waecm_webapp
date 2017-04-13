@@ -9,7 +9,7 @@ export function getUserData(){
         WebAPIUtils.getUserData().then((res) => {
             dispatch({type: types.USER_GET_DATA_SUCCESS, user: res});
         }).catch((err) => {
-            dispatch({type: types.USER_GET_DATA_FAILED})
+            dispatch({type: types.USER_GET_DATA_FAILED, error: err});
         })
     }
 }
