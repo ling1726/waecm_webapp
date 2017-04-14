@@ -13,26 +13,38 @@ export class NavContainer extends Component{
         this.props.authActions.logout();
     }
 
+    componentDidMount(){
+        $(".button-collapse").sideNav();
+    }
+
     render(){ 
         const logoStyle = {maxHeight: '64px', padding: '15px'}
         let loginLogoutButton = null;
         if(this.props.loggedIn){
             loginLogoutButton = <a onClick={ e => this.handleLogout(e)}>Logout</a>
         }else{
-            loginLogoutButton = <a href="/">Login</a>
+            loginLogoutButton = <a href="/"> Login</a>
         }
 
         return <nav className={"nav-extended"}>
                     <div className={"nav-wrapper"}>
-                        <Link to="/" className="brand-logo">
+                        <Link to="/overview" className="brand-logo">
                             <img src={logo} style={logoStyle}/>
                         </Link>
-                        <ul id="nav-mobile" className="right">
+                        <a href="#" data-activates="mobile-nav" className="button-collapse"><i className="fa fa-bars"></i></a>
+                        <ul id="nav-mobile" className="right hide-on-med-and-down">
                             <li><Link to="/overview">Overview</Link></li>
                             <li><Link to="/activity">Activity</Link></li>
                             <li><Link to="#">New transfer</Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
+                        <ul className="side-nav" id="mobile-nav">
+                            <li><Link to="/overview">Overview</Link></li>
+                            <li><Link to="/activity">Activity</Link></li>
+                            <li><Link to="#">New transfer</Link></li>
+                            <li>{loginLogoutButton}</li>
+                        </ul>
+
                     </div>
                                         
                 </nav>

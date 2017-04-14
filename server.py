@@ -12,7 +12,7 @@ from api import *
 ######################################
 ### CREATE APP
 #####################################
-if os.environ['DEV'] == 'true':
+if 'DEV' in os.environ and  os.environ['DEV'] == 'true':
     app = Flask(__name__, template_folder='./static/dist')
 else:
     app = Flask(__name__, template_folder='./static/prod')

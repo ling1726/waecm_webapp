@@ -21,14 +21,17 @@ export default class ActivityListElement extends Component{
                 {amountDisplay}
             </div>
             <div>
-                <span>{this.props.date}</span>
+                <i className="fa fa-calendar"></i>
+                <span> {this.props.date}</span>
             </div>
             <div>
-                <span>{this.props.time}</span>
+                <i className="fa fa-clock-o"></i>
+                <span> {this.props.time}</span>
             </div>
 
             <div>
-                <span>{this.props.comment}</span>
+                <i className="fa fa-comment"></i>
+                <span> {this.props.comment}</span>
             </div>
             <TagList tags={this.props.tags}/>
         </li>

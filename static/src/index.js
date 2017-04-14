@@ -15,7 +15,12 @@ state.counter = {value: 0};
  
 const store = configureStore(state);
 const history = syncHistoryWithStore(browserHistory, store);
- 
+
+// should delete the token on exit
+ window.onbeforeunload = function() {
+  localStorage.removeItem(key);
+  return '';
+};
 render(
         <Provider store={store}>
             <Router history={browserHistory} routes={routes} />
