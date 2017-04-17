@@ -17,6 +17,12 @@ export class NavContainer extends Component{
         $(".button-collapse").sideNav();
     }
 
+    componentDidUpdate(){
+        if(this.props.notification != null){
+            Materialize.toast(this.props.notification, 5000);
+        }
+    }
+
     render(){ 
         const logoStyle = {maxHeight: '64px', padding: '15px'}
         let loginLogoutButton = null;
@@ -58,7 +64,8 @@ NavContainer.propTypes = {
 
 function mapStateToProps(state){
     return{
-        loggedIn: state.auth.isLogged
+        loggedIn: state.auth.isLogged,
+        notification: state.auth.notification
     };
 }
 

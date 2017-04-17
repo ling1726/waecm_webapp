@@ -20,7 +20,7 @@ export default class Auth extends Component{
     }
 
     componentDidMount(){
-        Materialize.updateTextFields();
+        //Materialize.updateTextFields();
     }
 
     render(){

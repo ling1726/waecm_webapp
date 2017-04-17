@@ -6,18 +6,18 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import routes from './routes'
+import socketAPI from './utils/SocketAPI'
 
 /* initial states */
 let state = {};
 
-state.counter = {value: 0};
 
- 
-const store = configureStore(state);
+const socketApi = new socketAPI(); 
+const store = configureStore(state, socketApi);
 const history = syncHistoryWithStore(browserHistory, store);
 
 // should delete the token on exit
- window.onbeforeunload = function() {
+window.onbeforeunload = function() {
   localStorage.removeItem(key);
   return '';
 };
