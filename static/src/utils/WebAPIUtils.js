@@ -75,5 +75,14 @@ export default class {
         })
     }
 
+    static getTransfer(){
+        return axios({
+            url: '/api/transfer',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
 }
 
