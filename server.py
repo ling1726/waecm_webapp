@@ -69,13 +69,14 @@ def logUserConnection():
     return 
 
 @socketio.on('join')
+# to test this, log on as user id=1 and then another user ;)
 def onJoin(data):
     token = data['token']
     identity = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])['identity']
     join_room(identity)
     logger.info('user: ' + str(identity) +' is ready to receive notifications')
     emit('NOTIFICATION', 'Welcome to piggyBank!', room=identity)
-    
+    if identity != 1: emit('NOTIFICATION', 'TESTING NOTIFICATION SERVICE', room=1)
 
 if __name__ == '__main__':
     app.logger.info('Stating up Flask')

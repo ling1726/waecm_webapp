@@ -17,7 +17,7 @@ export default function reducers(state = initialState, action){
             return {...state, error: true};
         case types.AUTH_LOGOUT:
             return {...state, isLogged: false};
-        case types.NOTIFICATION:
+        case types.NOTIFICATION:debugger
             return {...state, notification: action.result};
         case types.SOCKET_CONNECT_SUCCESS:
         case types.SOCKET_CONNECT_FAILED:
