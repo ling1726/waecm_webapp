@@ -75,5 +75,16 @@ export default class {
         })
     }
 
+
+    static changeLimit(limit){
+        return axios({
+            url:'/api/user/changeLimit',
+            method: 'post',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res)=>{
+            return res.data;
+        })
+
+    }
 }
 
