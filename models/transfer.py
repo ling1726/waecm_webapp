@@ -47,3 +47,11 @@ class Transfer(Base):
 
     def getTimestamp(self):
         return int(time.mktime(self.transferDateTime.timetuple()))*1000
+
+    def __repr__(self):
+        return ('Amount: %r' % (self.amount) +
+                ' TransferDateTime: %r' % (self.transferDateTime) +
+                ' Comment %r: ' % (self.comment) +
+                ' SenderAccount: %r' % (self.senderAccount) +
+                ' RecipientAccount: %r' % (self.recipientAccount) +
+                ' SenderName: %r' % (self.senderName))

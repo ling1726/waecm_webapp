@@ -84,5 +84,22 @@ export default class {
             return res.data
         })
     }
+
+    static createTransfer(transferData){
+        return axios({
+            url: '/api/transfer',
+            method: 'post',
+            data:JSON.stringify({
+                amount: transferData.amount,
+                comment: transferData.comment,
+                senderIban: transferData.sender_iban,
+                recipientIban: transferData.receiver_iban,
+                senderName: transferData.sender_email
+            }),
+            headers: {'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
 }
 

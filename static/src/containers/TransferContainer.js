@@ -4,6 +4,7 @@ import Transfer from '../components/Transfer'
 import { bindActionCreators } from 'redux';
 import * as UserActions from '../actions/user'
 import * as AccountActions from '../actions/account'
+import * as TransferActions from '../actions/transfer'
 
 export class TransferContainer extends Component{
 
@@ -18,26 +19,34 @@ export class TransferContainer extends Component{
     }
 
     render(){
+        const {transferActions, message} = this.props;
+
+        if(message !== null){
+            Materialize.toast(message, 4000);
+        }
 
         return  <div>
                 <h2>Bank Transfer</h2>
 
-                <Transfer {...this.props}></Transfer>
-
-
+                <Transfer 
+                    {...this.props}
+                    createTransfer={transferActions.createTransfer}                
+                />
         </div>
     };
 }
 
 TransferContainer.propTypes = {
     email: PropTypes.string,
-    iban: PropTypes.string
+    iban: PropTypes.string,
+    message: PropTypes.string
 };
 
 function mapStateToProps(state){
     return{
         email: state.user.email,
-        iban: state.account.iban
+        iban: state.account.iban,
+        message: state.transfer.message
     };
 }
 
@@ -45,6 +54,7 @@ function mapDispatchToProps(dispatch){
     return{
        userActions: bindActionCreators(UserActions, dispatch),
        accountActions: bindActionCreators(AccountActions, dispatch),
+       transferActions: bindActionCreators(TransferActions, dispatch)
     };
 }
 

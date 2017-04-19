@@ -4,12 +4,14 @@ import counter from './counter';
 import auth from './auth';
 import user from './user';
 import account from './account'
+import transfer from './transfer'
 
 const rootReducer = combineReducers({
     counter,
     auth,
     user,
     account,
+    transfer,
     routing
 });
 
