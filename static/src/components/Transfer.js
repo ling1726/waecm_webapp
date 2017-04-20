@@ -18,6 +18,10 @@ export default class Transfer extends Component{
 
     }
 
+   componentDidMount(){
+        Materialize.updateTextFields();
+    }
+
 
     render(){
         return  <div>
@@ -30,11 +34,11 @@ export default class Transfer extends Component{
                                     <div className="row">
                                       <div className="input-field col s6">
                                         <input disabled value={this.props.firstname + " " + this.props.lastname} ref="sender_name" type="text" className="validate"/>
-                                        <label for="sender_name" class="active">Sender Name</label>
+                                        <label for="sender_name">Sender Name</label>
                                       </div>
                                       <div className="input-field col s6">
                                         <input disabled value={this.props.iban} ref="sender_iban" type="text" className="validate"/>
-                                        <label for="sender_iban" class="active">Sender IBAN</label>
+                                        <label for="sender_iban">Sender IBAN</label>
                                       </div>
                                     </div>
                                     <div className="row">
@@ -56,7 +60,7 @@ export default class Transfer extends Component{
                                     <div className="row">
                                         <div className="col s1 grey-text lighten-1">Amount</div>
                                         <div className="input-field col s3"> 
-                                            <input ref="amount" type="number" min="0.00" steps="0.01" max="1000.00" className="validate"/>
+                                            <input ref="amount" type="number" min="0.00" className="validate"/>
                                             <label for="amount">Euro</label>
                                         </div>
                                         <div className="col s2"/>
