@@ -43,24 +43,24 @@ export default class Transfer extends Component{
                                     </div>
                                     <div className="row">
                                       <div className="input-field col s12"> 
-                                        <input ref="receiver_name" type="text" className="validate"/>
+                                        <input ref="receiver_name" type="text" className="validate" required />
                                         <label for="receiver_name">Receiver</label>
                                       </div>
                                     </div>
                                     <div className="row">
                                         <div className="input-field col s6"> 
-                                          <input ref="receiver_iban" type="text" pattern="AT[0-9]{18}" className="validate"/>
+                                          <input ref="receiver_iban" type="text" pattern="AT[0-9]{18}" className="validate" required />
                                           <label for="receiver_iban">IBAN</label>
                                         </div>
                                         <div className="input-field col s4"> 
-                                          <input ref="comment" type="text" className="validate"/>
+                                          <input ref="comment" type="text" className="validate" required />
                                           <label for="comment">Payment Reference</label>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col s1 grey-text lighten-1">Amount</div>
                                         <div className="input-field col s3"> 
-                                            <input ref="amount" type="number" min="0.00" className="validate"/>
+                                            <input ref="amount" type="number" min="0.00" className="validate" required />
                                             <label for="amount">Euro</label>
                                         </div>
                                         <div className="col s2"/>
