@@ -14,7 +14,7 @@ class User(Base):
     balance = Column(Float, nullable = False)
     limit = Column(Float,nullable = False)
     notifications = relationship("Notification", back_populates = "user")  
-    account = relationship("Account", back_populates = "user")
+    account = relationship("Account", back_populates = "user", uselist = False)
 
 
     # constructor - DONT initialize id

@@ -37,7 +37,7 @@ def getActivity():
                             'time': transfer.getTime(),\
                             'timestamp':transfer.getTimestamp(),\
                             'comment': transfer.comment, \
-                            'externalParty': transfer.senderName, 
+                            'externalParty': transfer.getSenderName(), 
                             'tags': tags,\
                             'type': 'in'})
 
@@ -49,7 +49,7 @@ def getActivity():
                             'time': transfer.getTime(),\
                             'timestamp':transfer.getTimestamp(),\
                             'comment': transfer.comment, \
-                            'externalParty': transfer.getRecipientName(),\
+                            'externalParty': transfer.recipientName,\
                             'tags': tags,\
                             'type':'out'})
     return jsonify(transfers=allTransfers)

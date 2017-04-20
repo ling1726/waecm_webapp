@@ -17,27 +17,27 @@ class Transfer(Base):
 
     senderAccountId = Column(Integer, ForeignKey("accounts.id"))
     senderAccount = relationship("Account", back_populates = "outTransfers",foreign_keys=senderAccountId)
-    senderName = Column(String(200), nullable = False)
+    recipientName = Column(String(200), nullable = False)
 
     recipientAccountId = Column(Integer, ForeignKey("accounts.id"))
     recipientAccount = relationship("Account", back_populates = "inTransfers",foreign_keys=recipientAccountId)
   
     # constructor - DONT initialize id
-    def __init__(self, amount, transferDateTime, comment, senderAccount, recipientAccount, senderName):
+    def __init__(self, amount, transferDateTime, comment, senderAccount, recipientAccount, recipientName):
         self.amount = amount
         self.transferDateTime = transferDateTime
         self.comment = comment
         self.senderAccount = senderAccount
         self.recipientAccount = recipientAccount
-        self.senderName = senderName
+        self.recipientName = recipientName
 
-    def getRecipientName(self):
-        recipientName = self.recipientAccount.iban
-        if self.recipientAccount.user != None:
-            recipientName = self.recipientAccount.user.getFullName()
-        if self.recipientAccount.identifier != None:
-            recipientName = self.recipientAccount.identifier
-        return recipientName
+    def getSenderName(self):
+        senderName = self.senderAccount.iban
+        if self.senderAccount.user != None:
+            senderName = self.senderAccount.user.getFullName()
+        if self.senderAccount.identifier != None:
+            senderName = self.senderAccount.identifier
+        return senderName
 
     def getReadableDate(self):
         return self.transferDateTime.strftime('%Y-%m-%d')
@@ -54,4 +54,4 @@ class Transfer(Base):
                 ' Comment %r: ' % (self.comment) +
                 ' SenderAccount: %r' % (self.senderAccount) +
                 ' RecipientAccount: %r' % (self.recipientAccount) +
-                ' SenderName: %r' % (self.senderName))
+                ' RecipientName: %r' % (self.recipientName))
