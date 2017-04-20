@@ -12,6 +12,7 @@ export class TransferContainer extends Component{
         const {userActions, accountActions} = this.props;
         userActions.getUserData();
         accountActions.getAccountData();
+
     }
 
     willReceiveProps(nextProps){
@@ -37,14 +38,16 @@ export class TransferContainer extends Component{
 }
 
 TransferContainer.propTypes = {
-    email: PropTypes.string,
+    lastname: PropTypes.string,
+    firstname: PropTypes.string,
     iban: PropTypes.string,
     message: PropTypes.string
 };
 
 function mapStateToProps(state){
     return{
-        email: state.user.email,
+        lastname: state.user.lastname,
+        firstname: state.user.firstname,
         iban: state.account.iban,
         message: state.transfer.message
     };

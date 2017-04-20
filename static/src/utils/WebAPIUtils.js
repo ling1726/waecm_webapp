@@ -92,9 +92,8 @@ export default class {
             data:JSON.stringify({
                 amount: transferData.amount,
                 comment: transferData.comment,
-                senderIban: transferData.sender_iban,
                 recipientIban: transferData.receiver_iban,
-                senderName: transferData.sender_email
+                receiverName: transferData.receiver_name
             }),
             headers: {'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {

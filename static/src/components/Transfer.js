@@ -18,6 +18,7 @@ export default class Transfer extends Component{
 
     }
 
+
     render(){
         return  <div>
                   <div className="row">
@@ -28,10 +29,12 @@ export default class Transfer extends Component{
                                   <form onSubmit={this.handleTransfer} className="col s12">
                                     <div className="row">
                                       <div className="input-field col s6">
-                                        <input disabled value={this.props.email} ref="sender_email" type="text" className="validate"/>
+                                        <input disabled value={this.props.firstname + " " + this.props.lastname} ref="sender_name" type="text" className="validate"/>
+                                        <label for="sender_name" class="active">Sender Name</label>
                                       </div>
                                       <div className="input-field col s6">
                                         <input disabled value={this.props.iban} ref="sender_iban" type="text" className="validate"/>
+                                        <label for="sender_iban" class="active">Sender IBAN</label>
                                       </div>
                                     </div>
                                     <div className="row">

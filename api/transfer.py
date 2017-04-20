@@ -21,13 +21,33 @@ transferAPI = Blueprint('transferAPI', __name__)
 def createTransfer():
     logger.info('providing account data')
     data = request.get_json()
-    senderAccount = db_session.query(Account).filter_by(iban=data['senderIban']).first()
     user = db_session.query(User).filter_by(id=str(current_identity)).first()
-    print user.balance
+    senderAccount = user.account
     recipientAccount = db_session.query(Account).filter_by(iban=data['recipientIban']).first()
+    
     if (recipientAccount != None):
-        transfer = Transfer(data['amount'], datetime.now(), data['comment'], senderAccount, recipientAccount, data['senderName'])
-        user.balance = user.balance - float(data['amount'])
+        if(senderAccount.id == recipientAccount.id):
+            return jsonify(message='Accounts must not be equal')
+
+        receiverName = data['receiverName']
+        comment = data['comment']
+
+        if (data['amount'] == None):
+            return jsonify(message='No amount specified')
+
+        try:
+            amount = float(data['amount'])
+        except ValueError:
+            return jsonify(message='Invalid amount specified')
+
+        if(amount<0):
+            return jsonify(message='Amount negative')
+
+        if (receiverName == None):
+            return jsonify(message='No sender name specified')
+
+        transfer = Transfer(amount, datetime.now(), comment, senderAccount, recipientAccount, receiverName)
+        user.balance = user.balance - amount
         db_session.add(transfer)
         db_session.commit()
     else:
