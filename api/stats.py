@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt import jwt_required
 from flask_jwt import current_identity
+
+from util.DecimalEncoder import DecimalEncoder
 from . import User
 from . import db_session
 from service import StatsService
@@ -24,6 +26,6 @@ def getStats():
     stats = service.getStats(current_identity, interval, diff)
 
     logger.info('stats: ' + str(stats))
-    return json.dumps(dict(stats))
+    return json.dumps(dict(stats), cls=DecimalEncoder)
 
 

@@ -16,18 +16,62 @@ class StatsService:
         logger.info("userid " + str(userId))
         logger.info("accid: " + str(accID.id))
 
+        data = []
+        if interval == "monthly":
+            data = self.getStatsPerMonth(str(accID.id))
+        elif interval == "yearly":
+            data = self.getStatsPerYear(str(accID.id))
+        elif interval == "daily":
+            data = self.getStatsPerDay(str(accID.id))
 
-        data = db_session\
+        print data
+
+
+        return data
+
+    def getStatsPerMonth(self, accID):
+        data = db_session \
             .query(sa.func.year(Transfer.transferDateTime),
                    sa.func.month(Transfer.transferDateTime),
-                   sa.func.sum(Transfer.amount).label('total'))\
-            .filter_by(senderAccountId=str(accID.id))\
+                   sa.func.sum(Transfer.amount).label('total')) \
+            .filter_by(senderAccountId=accID) \
             .group_by(sa.func.year(Transfer.transferDateTime),
-                      sa.func.month(Transfer.transferDateTime))\
+                      sa.func.month(Transfer.transferDateTime)) \
             .all()
 
         result = []
         for entry in data:
             result.append((str(entry[0]) + "-" + str(entry[1]).zfill(2), entry[2]))
+        return result
 
+    def getStatsPerYear(self, accID):
+        data = db_session \
+            .query(sa.func.year(Transfer.transferDateTime),
+                   sa.func.sum(Transfer.amount).label('total')) \
+            .filter_by(senderAccountId=accID) \
+            .group_by(sa.func.year(Transfer.transferDateTime)) \
+            .all()
+
+        result = []
+
+        for entry in data:
+            result.append((str(entry[0]), entry[1]))
+
+        return result
+
+    def getStatsPerDay(self, accID):
+        data = db_session \
+            .query(sa.func.year(Transfer.transferDateTime),
+                   sa.func.month(Transfer.transferDateTime),
+                   sa.func.day(Transfer.transferDateTime),
+                   sa.func.sum(Transfer.amount).label('total')) \
+            .filter_by(senderAccountId=accID) \
+            .group_by(sa.func.year(Transfer.transferDateTime),
+                      sa.func.month(Transfer.transferDateTime),
+                      sa.func.day(Transfer.transferDateTime)) \
+            .all()
+
+        result = []
+        for entry in data:
+            result.append((str(entry[0]) + "-" + str(entry[1]).zfill(2) + "-" + str(entry[2]).zfill(2), entry[3]))
         return result

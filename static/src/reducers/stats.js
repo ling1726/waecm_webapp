@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 const initialState = {
-    interval: "monthly",
+    interval: "daily",
     datapoints: null,
 };
 
