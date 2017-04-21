@@ -9,7 +9,9 @@ export function getAuthToken(loginData){
         WebAPIUtils.getAuthToken(loginData).then((res) => { 
             localStorage.token = res.access_token;
             dispatch({type: types.AUTH_SUCCESS, token: res.access_token});
-        }).catch((err) => { 
+            dispatch({type: types.SOCKET_CONNECT_REQUEST});
+            dispatch({type: types.SOCKET_ATTACH_REQUEST, eventName: types.NOTIFICATION});
+        }).catch((err) => {
             dispatch({type: types.AUTH_FAILED});
         })
     }

@@ -19,6 +19,9 @@ export default class Auth extends Component{
         this.setState({password: event.target.value})
     }
 
+    componentDidMount(){
+        //Materialize.updateTextFields();
+    }
 
     render(){
         let errorSpan = null;
@@ -33,15 +36,15 @@ export default class Auth extends Component{
                         <form onSubmit={this.handleAuth}>
                            <div className={"input-field"}> 
                                 <input id="username" type="text" 
-                                    value={this.state.username} onChange={this.handleChangeUsername} placeholder="enter username"/>
+                                    value={this.state.username} onChange={this.handleChangeUsername} placeholder="john.doe@example.com"/>
                                 <label htmlFor="username" className={"black-text"}>username</label>
                             </div>
                             <div className={"input-field"} >
                                 <input id="password" type="password"  
-                                    value={this.state.password} onChange={this.handleChangePassword} placeholder="enter password"/>
+                                    value={this.state.password} onChange={this.handleChangePassword} placeholder="*************"/>
                                 <label htmlFor="password" className={"black-text"}>password</label>
                             </div>
-                            <button type="submit" className={"btn waves-effect waves-light"}>login </button>
+                            <button type="submit" className={"btn waves-effect waves-light"}><i className="fa fa-sign-in"></i> Login</button>
                             {errorSpan}
                         </form>
                     </div>

@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 
 export class App extends Component {
 
-        componentDidMount(){
-            this.props.authActions.checkAuthToken();
-        }
-
         render() {
         return <div>
                 { this.props.nav }
@@ -18,13 +14,11 @@ export class App extends Component {
 
 function mapDispatchToProps(dispatch){
     return{
-        authActions: bindActionCreators(AuthActions, dispatch)
     };
 }
 
 function mapStateToProps(state){
     return{
-        isLogged: state.auth.isLogged
     };
 }
 export default connect(
