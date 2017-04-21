@@ -16,7 +16,7 @@ userAPI = Blueprint('userAPI', __name__)
 def getUserData():
     logger.info('providing user data')
 
-    user = db_session.query(User, User.email, User.balance, User.limit).filter_by(id=str(current_identity)).first()
-    return jsonify(email=user.email, balance=user.balance, limit=user.limit)
+    user = db_session.query(User.firstName, User.lastName, User.email, User.balance, User.limit).filter_by(id=str(current_identity)).first()
+    return jsonify(firstName=user.firstName, lastName=user.lastName, email=user.email, balance=user.balance, limit=user.limit)
 
 

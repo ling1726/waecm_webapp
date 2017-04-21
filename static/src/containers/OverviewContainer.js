@@ -41,6 +41,8 @@ export class OverviewContainer extends Component{
 }
 
 OverviewContainer.propTypes = {
+    fistName: PropTypes.string,
+    lastName: PropTypes.string,
     email: PropTypes.string,
     iban: PropTypes.string,
     bic: PropTypes.string,
@@ -52,6 +54,8 @@ OverviewContainer.propTypes = {
 
 function mapStateToProps(state){
     return{
+        firstName: state.user.firstName,
+        lastName: state.user.lastName,
         email: state.user.email,
         iban: state.account.iban,
         bic: state.account.bic,

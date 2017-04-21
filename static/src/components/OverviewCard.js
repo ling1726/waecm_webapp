@@ -14,7 +14,7 @@ export default class OverviewCard extends Component{
                 <div className="col s12">
                     <div className="card darken-1">
                         <div className="card-content">
-                            <span className="card-title">{this.props.email}</span>
+                            <span className="card-title">{this.props.firstName} {this.props.lastName}</span>
                             <div className="row">
                                 <div className="col s12 subtitle">{this.props.email}</div>
                             </div>
