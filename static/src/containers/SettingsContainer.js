@@ -39,13 +39,13 @@ export class SettingsContainer extends Component{
 
      SettingsContainer.propTypes = { email: PropTypes.string, iban: PropTypes.string, limit: PropTypes.number, message: PropTypes.string};
 
-        function mapStateToProps(state){
-            return{
-                email: state.user.email,
-                iban: state.account.iban,
-                limit: state.user.limit,
-                message: state.settings.message
-         };
+function mapStateToProps(state){
+    return{
+        email: state.user.email,
+        iban: state.account.iban,
+        limit: state.user.limit,
+        message: state.settings.message
+ };
 }
 
 function mapDispatchToProps(dispatch){

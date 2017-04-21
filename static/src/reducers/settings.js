@@ -8,7 +8,7 @@ const initialState = {
     message: null,
 };
 
-export default function reducers(state = initialState, action){debugger
+export default function reducers(state = initialState, action){
      switch (action.type){
         case types.CHANGELIMIT_REQUEST:
             return state;

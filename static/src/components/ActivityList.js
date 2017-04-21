@@ -6,7 +6,7 @@ export default class ActivityList extends Component{
         super(props);
     }
 
-    render(){debugger
+    render(){
         let transfers = this.props.transfers;
         
         return  <ul className="collection with-header">

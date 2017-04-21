@@ -10,9 +10,9 @@ export default class Settings extends React.Component{
         super(props);
     }
 
-    handleChangeLimit=(event)=>{debugger
+    handleChangeLimit=(event)=>{
         event.preventDefault();
-    console.log(this.refs);
+        console.log(this.refs);
         const  changedLimit=this.refs['changeLimit'].value;
         this.props.changeLimit(changedLimit);
     }
@@ -40,8 +40,8 @@ export default class Settings extends React.Component{
                                     </div>
                                     <div className="row">
                                         <div className="input-field col s3">
-                                            <input ref="changeLimit" type="number" min="0.00" max="1000.00" className="validate"/>
-                                            <label for="changeLimit">change limit</label>
+                                            <input ref="changeLimit" type="number" min="0.00" max="1000.00" className="validate" />
+                                            <label htmlFor="changeLimit">change limit</label>
                                         </div>
                                         <div className="col s2"/>
                                     </div>
