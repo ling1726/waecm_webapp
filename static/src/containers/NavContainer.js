@@ -18,7 +18,6 @@ export class NavContainer extends Component{
     }
 
     componentDidUpdate(){
-        debugger
         if(this.props.notification != null){
             Materialize.toast(this.props.notification, 5000);
         }

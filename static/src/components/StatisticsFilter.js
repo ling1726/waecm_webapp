@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 export default class StatisticsFilter extends Component{
     constructor(props){
         super(props);
-
     }
 
     isMonthly(){
@@ -16,8 +15,22 @@ export default class StatisticsFilter extends Component{
         return this.props.interval == 'yearly';
     }
 
-    handleChoice(){
-        console.log('onchange!!')
+    handleChoice() {
+        console.log("onchange");
+        if (document.getElementById('radio-daily').checked) {
+            this.props.changeInterval('daily');
+        } else if (document.getElementById('radio-monthly').checked) {
+            this.props.changeInterval('monthly');
+        } else if (document.getElementById('radio-yearly').checked) {
+            this.props.changeInterval('yearly');
+        }
+    }
+    componentDidMount(){
+            document.querySelector('#radio-daily').addEventListener('change', this.handleChoice.bind(this));
+            document.querySelector('#radio-monthly').addEventListener('change', this.handleChoice.bind(this));
+            document.querySelector('#radio-yearly').addEventListener('change', this.handleChoice.bind(this));
+
+            document.querySelector('#radio-' + this.props.interval).checked = true;
     }
 
     render(){

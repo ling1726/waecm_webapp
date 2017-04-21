@@ -16,7 +16,6 @@ export class OverviewContainer extends Component{
         userActions.getUserData();
         accountActions.getAccountData();
         statsActions.getStatsForInterval(this.props.statsInterval)
-
     }
 
     willReceiveProps(nextProps){
@@ -28,12 +27,13 @@ export class OverviewContainer extends Component{
     }
 
     render(){
+        const {statsActions} = this.props;
 
         return  <div>
                 <h2>Overview</h2>
 
                 <OverviewCard {...this.props}></OverviewCard>
-                <StatisticsFilter interval={this.props.statsInterval}></StatisticsFilter>
+                <StatisticsFilter interval={this.props.statsInterval} changeInterval={statsActions.getStatsForInterval}></StatisticsFilter>
                 <StatisticsGraph interval={this.props.statsInterval} data={this.props.datapoints}></StatisticsGraph>
                 <StatisticsTable></StatisticsTable>
         </div>
@@ -49,7 +49,6 @@ OverviewContainer.propTypes = {
     balance: PropTypes.number,
     limit: PropTypes.number,
     statsInterval: PropTypes.string,
-    datapoints: PropTypes.list,
 };
 
 function mapStateToProps(state){
