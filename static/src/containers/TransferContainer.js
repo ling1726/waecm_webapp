@@ -9,17 +9,17 @@ import * as TransferActions from '../actions/transfer'
 export class TransferContainer extends Component{
 
     componentDidMount(){
-        const {userActions, accountActions} = this.props;
+        const {userActions, accountActions,transferActions} = this.props;
         userActions.getUserData();
         accountActions.getAccountData();
-
+        transferActions.getTags();
     }
 
     willReceiveProps(nextProps){
 
     }
 
-    render(){
+    render(){ 
         const {transferActions, message} = this.props;
 
         if(message !== null){
@@ -49,7 +49,8 @@ function mapStateToProps(state){
         lastname: state.user.lastname,
         firstname: state.user.firstname,
         iban: state.account.iban,
-        message: state.transfer.message
+        message: state.transfer.message,
+        tags: state.transfer.tags
     };
 }
 

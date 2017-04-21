@@ -103,7 +103,8 @@ export default class {
                 amount: transferData.amount,
                 comment: transferData.comment,
                 recipientIban: transferData.receiver_iban,
-                receiverName: transferData.receiver_name
+                receiverName: transferData.receiver_name,
+                tags: transferData.tags
             }),
             headers: {'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {

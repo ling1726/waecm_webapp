@@ -9,9 +9,15 @@ export default class Transfer extends Component{
         event.preventDefault();
         
         const formData = {};
-        for (const field in this.refs) {
-          formData[field] = this.refs[field].value;
-          this.refs[field].value="";
+        var selectedTags = new Array();
+        for (const field in this.refs) { 
+          if(field=='tags') { 
+            let selected = Array.from(this.refs['tags']).filter(option => option.selected).map(option => option.value).filter(Boolean);
+            formData['tags'] = JSON.stringify(selected);
+          }
+          else {
+            formData[field] = this.refs[field].value;
+          }
         }
 
         this.props.createTransfer(formData);
@@ -21,9 +27,12 @@ export default class Transfer extends Component{
    componentDidMount(){
         Materialize.updateTextFields();
     }
+ 
+    componentDidUpdate() {
+        $('select').material_select();
+    }
 
-
-    render(){
+    render(){ 
         return  <div>
                   <div className="row">
                     <div className="col s12">
@@ -42,32 +51,35 @@ export default class Transfer extends Component{
                                       </div>
                                     </div>
                                     <div className="row">
-                                      <div className="input-field col s12"> 
+                                      <div className="input-field col s6"> 
                                         <input ref="receiver_name" type="text" className="validate" required />
-                                        <label for="receiver_name">Receiver</label>
+                                        <label for="receiver_name">Receiver Name</label>
+                                      </div>
+                                      <div className="input-field col s6"> 
+                                        <input ref="receiver_iban" type="text" pattern="AT[0-9]{18}" className="validate" required />
+                                        <label for="receiver_iban">IBAN</label>
                                       </div>
                                     </div>
                                     <div className="row">
-                                        <div className="input-field col s6"> 
-                                          <input ref="receiver_iban" type="text" pattern="AT[0-9]{18}" className="validate" required />
-                                          <label for="receiver_iban">IBAN</label>
-                                        </div>
-                                        <div className="input-field col s4"> 
-                                          <input ref="comment" type="text" className="validate" required />
-                                          <label for="comment">Payment Reference</label>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col s1 grey-text lighten-1">Amount</div>
-                                        <div className="input-field col s3"> 
-                                            <input ref="amount" type="number" min="0.00" className="validate" required />
-                                            <label for="amount">Euro</label>
-                                        </div>
-                                        <div className="col s2"/>
-                                        <div className="input-field col s4"> 
-                                          <input ref="tag" type="text" className="validate"/>
-                                          <label for="tag">Tag</label>
-                                        </div>
+                                      <div className="input-field col s6"> 
+                                        <input ref="comment" type="text" className="validate" required />
+                                        <label for="comment">Payment Reference</label>
+                                      </div>
+                                      <div className="input-field col s2"> 
+                                        <input ref="amount" type="number" min="0.00" step="0.01" className="validate" required />
+                                        <label for="amount">Amount (&euro;)</label>
+                                      </div>
+                                      <div className="input-field col s4"> 
+                                        <select ref="tags" multiple>
+                                          <option value="" disabled selected>Choose your Tags</option>
+                                          {
+                                            this.props.tags.map((tag) => {
+                                                return <option value={tag}>{tag}</option>
+                                            })
+                                          }
+                                        </select>
+                                        <label>Tags</label>
+                                      </div>
                                     </div>
                                     <div className="row">
                                         <div className="col s12">
