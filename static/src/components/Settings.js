@@ -10,6 +10,13 @@ export default class Settings extends React.Component{
         super(props);
     }
 
+    handleChangeLimit=(event)=>{debugger
+        event.preventDefault();
+    console.log(this.refs);
+        const  changedLimit=this.refs['changeLimit'].value;
+        this.props.changeLimit(changedLimit);
+    }
+
      render(){
         return  <div>
                   <div className="row">
@@ -17,7 +24,7 @@ export default class Settings extends React.Component{
                       <div className="card darken-1">
                         <div className="card-content">
                                 <div className="row">
-                                  <form action='#' className="col s12">
+                                  <form onSubmit={this.handleChangeLimit} className="col s12">
                                     <div className="row">
                                       <div className="input-field col s6">
                                         <input disabled value={this.props.email} id="user_account" type="text" className="validate"/>
@@ -33,8 +40,8 @@ export default class Settings extends React.Component{
                                     </div>
                                     <div className="row">
                                         <div className="input-field col s3">
-                                            <input id="amount_euro" type="number" min="0.00" max="1000.00" className="validate"/>
-                                            <label for="amount_euro">change limit</label>
+                                            <input ref="changeLimit" type="number" min="0.00" max="1000.00" className="validate"/>
+                                            <label for="changeLimit">change limit</label>
                                         </div>
                                         <div className="col s2"/>
                                     </div>

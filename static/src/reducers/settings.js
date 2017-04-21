@@ -5,17 +5,15 @@ import * as types from '../actions/types';
 
 
 const initialState = {
-    email: null,
-    balance:null,
-    limit: null
+    message: null,
 };
 
-export default function reducers(state = initialState, action){
+export default function reducers(state = initialState, action){debugger
      switch (action.type){
         case types.CHANGELIMIT_REQUEST:
             return state;
         case types.CHANGELIMIT_SUCCESS:
-            return {...state, email: action.user.email, balance: action.user.balance, limit: action.user.limit};
+            return {...state, message: action.message};
         case types.CHANGELIMIT_FAILED:
             return {...state};
         default:

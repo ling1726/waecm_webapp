@@ -14,18 +14,4 @@ export function getUserData(){
     }
 }
 
-export function changeLimit(limit){
-    return dispatch => {
-        dispatch({type: types.CHANGELIMIT_REQUEST});
-
-        WebAPIUtils.changeLimit(limit).then((res)=> {
-            dispatch({type:types.CHANGELIMIT_SUCCESS, limit: res});
-         }).catch((err)=>{
-            dispatch({type: types.CHANGELIMIT_FAILED, error:err});
-        })
-
-
-    }
-}
-
 
