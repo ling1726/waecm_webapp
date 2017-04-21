@@ -35,7 +35,7 @@ export class OverviewContainer extends Component{
                 <OverviewCard {...this.props}></OverviewCard>
                 <StatisticsFilter interval={this.props.statsInterval} changeInterval={statsActions.getStatsForInterval}></StatisticsFilter>
                 <StatisticsGraph interval={this.props.statsInterval} data={this.props.datapoints}></StatisticsGraph>
-                <StatisticsTable></StatisticsTable>
+                <StatisticsTable data={this.props.datapoints}></StatisticsTable>
         </div>
     };
 }

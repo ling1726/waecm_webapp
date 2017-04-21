@@ -4,6 +4,8 @@ import Chart from 'chart.js'
 export default class StatisticsGraph extends Component{
     constructor(props){
         super(props);
+        this.state = {}
+        this.state.chart = null;
     }
 
     render(){
@@ -36,7 +38,10 @@ export default class StatisticsGraph extends Component{
             }
 
             let ctx = document.getElementById("stats-graph");
-            let myChart = new Chart(ctx, {
+            if(this.state.chart != null){
+                this.state.chart.destroy();
+            }
+            this.state.chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: keys,
