@@ -25,7 +25,7 @@ export default class StatisticsGraph extends Component{
     componentDidUpdate(prevProps){
         console.log('component did update');
 
-        if(prevProps.data !== this.props.data){
+        if(prevProps.data !== this.props.data || prevProps.diff !== this.props.diff){
             // sorting object
             let keys = Object.keys(this.props.data).sort();
             let i, len = keys.length;
@@ -37,6 +37,22 @@ export default class StatisticsGraph extends Component{
                 values.push(this.props.data[k])
             }
 
+            let label = "Expenses";
+            let borderColor = 'rgba(255, 159, 64, 1)';
+            let backColor = 'rgba(255, 159, 64, 0.2)';
+            if(this.props.diff){
+                for(let i = 1; i < values.length; ++i){
+                    values[i] = values[i] - values[i-1]
+                }
+                values.splice(0,1);
+                keys.splice(0,1);
+                label = "Difference to last";
+                borderColor = 'rgba(224, 100, 100, 1)';
+                backColor = 'rgba(224, 100, 100, 0.2)'
+            }
+
+
+
             let ctx = document.getElementById("stats-graph");
             if(this.state.chart != null){
                 this.state.chart.destroy();
@@ -46,13 +62,13 @@ export default class StatisticsGraph extends Component{
                 data: {
                     labels: keys,
                     datasets: [{
-                        label: 'Expenses',
+                        label: label,
                         data: values,
                         backgroundColor: [
-                            'rgba(255, 159, 64, 0.2)'
+                            backColor
                         ],
                         borderColor: [
-                            'rgba(255, 159, 64, 1)'
+                            borderColor
                         ],
                         borderWidth: 1
                     }]

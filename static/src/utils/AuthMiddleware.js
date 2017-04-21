@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 const auth_check = ({ getState }) =>  {
-  return (next) => (action) => { 
+  return (next) => (action) => {
     if(action.error != undefined && action.error.response.status === 401){
         console.log('jwt expired'); 
         window.location.replace('/')

@@ -5,18 +5,8 @@ export default class StatisticsFilter extends Component{
         super(props);
     }
 
-    isMonthly(){
-        return this.props.interval == 'monthly';
-    }
-    isDaily(){
-        return this.props.interval == 'daily';
-    }
-    isYearly(){
-        return this.props.interval == 'yearly';
-    }
 
     handleChoice() {
-        console.log("onchange");
         if (document.getElementById('radio-daily').checked) {
             this.props.changeInterval('daily');
         } else if (document.getElementById('radio-monthly').checked) {
@@ -25,10 +15,17 @@ export default class StatisticsFilter extends Component{
             this.props.changeInterval('yearly');
         }
     }
+
+    handleCheckboxChange(){
+        this.props.setShowDiff(document.getElementById('check-diff').checked);
+    }
+
     componentDidMount(){
             document.querySelector('#radio-daily').addEventListener('change', this.handleChoice.bind(this));
             document.querySelector('#radio-monthly').addEventListener('change', this.handleChoice.bind(this));
             document.querySelector('#radio-yearly').addEventListener('change', this.handleChoice.bind(this));
+
+            document.querySelector('#check-diff').addEventListener('change', this.handleCheckboxChange.bind(this));
 
             document.querySelector('#radio-' + this.props.interval).checked = true;
     }

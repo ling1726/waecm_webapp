@@ -86,9 +86,6 @@ export default class {
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
             return res.data
-        }).catch((err) => {
-
-            return err
         })
     }
 

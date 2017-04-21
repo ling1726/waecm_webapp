@@ -24,6 +24,7 @@ export class OverviewContainer extends Component{
             statsActions.getStatsForInterval(nextProps.statsInterval)
         }
 
+
     }
 
     render(){
@@ -33,9 +34,10 @@ export class OverviewContainer extends Component{
                 <h2>Overview</h2>
 
                 <OverviewCard {...this.props}></OverviewCard>
-                <StatisticsFilter interval={this.props.statsInterval} changeInterval={statsActions.getStatsForInterval}></StatisticsFilter>
-                <StatisticsGraph interval={this.props.statsInterval} data={this.props.datapoints}></StatisticsGraph>
-                <StatisticsTable data={this.props.datapoints}></StatisticsTable>
+                <StatisticsFilter interval={this.props.statsInterval} changeInterval={statsActions.getStatsForInterval}
+                                   setShowDiff={statsActions.setShowDifference}></StatisticsFilter>
+                <StatisticsGraph interval={this.props.statsInterval} data={this.props.datapoints} diff={this.props.showDifference}></StatisticsGraph>
+                <StatisticsTable data={this.props.datapoints} ></StatisticsTable>
         </div>
     };
 }
@@ -49,6 +51,7 @@ OverviewContainer.propTypes = {
     balance: PropTypes.number,
     limit: PropTypes.number,
     statsInterval: PropTypes.string,
+    showDifference: PropTypes.bool,
 };
 
 function mapStateToProps(state){
@@ -61,7 +64,8 @@ function mapStateToProps(state){
         balance: state.user.balance,
         limit: state.user.limit,
         statsInterval: state.stats.interval,
-        datapoints: state.stats.datapoints
+        datapoints: state.stats.datapoints,
+        showDifference: state.stats.showDifference,
     };
 }
 
