@@ -85,7 +85,17 @@ export default class {
         })
     }
 
-    static createTransfer(transferData){
+    static getTags(){
+        return axios({
+            url: '/api/transfer/tags',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
+    static createTransfer(transferData){debugger
         return axios({
             url: '/api/transfer',
             method: 'post',

@@ -27,4 +27,14 @@ export function createTransfer(transferData){
     }
 }
 
+export function getTags(){
+    return dispatch =>{
+        dispatch({type: types.TRANSFER_GET_TAGS_REQUEST});
+        WebAPIUtils.getTags().then((res) => {
+            dispatch({type: types.TRANSFER_GET_TAGS_SUCCESS, tags: res.tags});
+        }).catch((err) => {
+            dispatch({type: types.TRANSFER_GET_TAGS_FAILED, error: err})
+        })
+    }
+}
 

@@ -4,6 +4,7 @@ from flask_jwt import current_identity
 from . import Transfer
 from . import Account
 from . import User
+from . import Tag
 from . import db_session
 from datetime import datetime
 import json
@@ -47,9 +48,21 @@ def createTransfer():
             return jsonify(message='No sender name specified')
 
         transfer = Transfer(amount, datetime.now(), comment, senderAccount, recipientAccount, receiverName)
+        tags = json.loads(data['tags'])
+        for tag in tags:
+            transfer.tags.append(db_session.query(Tag).filter_by(title=tag).first())
+
         user.balance = user.balance - amount
         db_session.add(transfer)
         db_session.commit()
     else:
         return jsonify(message='Unknown recipient account')
     return jsonify(message='Your transfer was conducted')
+
+@transferAPI.route('/api/transfer/tags', methods=['GET'])
+@jwt_required()
+def getTags():
+    logger.info('providing available tags')
+    tags = db_session.query(Tag).all()
+    tag_titles = [ tag.title for tag in tags]
+    return jsonify(tags=tag_titles)
