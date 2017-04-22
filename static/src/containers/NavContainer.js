@@ -7,6 +7,10 @@ import * as AuthActions from '../actions/auth';
 
 export class NavContainer extends Component{
 
+    constructor(props){
+        super(props);
+        this.state = {notification: this.props.notification};
+    }
 
     handleLogout(){
         console.log('logging user out');
@@ -17,9 +21,10 @@ export class NavContainer extends Component{
         $(".button-collapse").sideNav();
     }
 
-    componentDidUpdate(){
-        if(this.props.notification != null){
-            Materialize.toast(this.props.notification, 5000);
+    componentDidUpdate(){debugger
+        if(this.state.notification !== this.props.notification){
+            this.state.notification = this.props.notification;
+            Materialize.toast(this.state.notification, 5000);
         }
     }
 
