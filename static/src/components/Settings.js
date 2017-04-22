@@ -24,7 +24,7 @@ export default class Settings extends React.Component{
                                   <form onSubmit={this.handleChangeLimit} className="col s12">
                                     <div className="row">
                                       <div className="input-field col s6">
-                                        <input disabled value={this.props.email} id="user_account" type="text" className="validate"/>
+                                        <input disabled value={this.props.firstname + " " +this.props.lastname} id="user_account" type="text" className="validate"/>
                                       </div>
                                       <div className="input-field col s6">
                                         <input disabled value={this.props.iban} id="user_iban" type="text" className="validate"/>
@@ -37,8 +37,8 @@ export default class Settings extends React.Component{
                                     </div>
                                     <div className="row">
                                         <div className="input-field col s3">
-                                            <input ref="changeLimit" type="number" min="0.00" className="validate" required="true" />
-                                            <label htmlFor="changeLimit">change limit</label>
+                                            <input ref="changeLimit" type="number" min="0.00" step="0.01" className="validate" required/>
+                                            <label htmlFor="changeLimit">change limit (€)</label>
                                         </div>
                                         <div className="col s2"/>
                                     </div>

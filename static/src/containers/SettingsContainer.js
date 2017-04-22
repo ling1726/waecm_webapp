@@ -25,6 +25,10 @@ export class SettingsContainer extends Component{
          // ?
          const {settingsActions,message}=this.props
 
+         if(message!==null){
+             Materialize.toast(message,4000);
+         }
+
         return  <div>
                 <h2>Change limit</h2>
 
@@ -37,11 +41,17 @@ export class SettingsContainer extends Component{
     };
 }
 
-     SettingsContainer.propTypes = { email: PropTypes.string, iban: PropTypes.string, limit: PropTypes.number, message: PropTypes.string};
+     SettingsContainer.propTypes = {
+         firstname: PropTypes.string,
+         lastname:  PropTypes.string,
+         iban: PropTypes.string,
+         limit: PropTypes.number,
+         message: PropTypes.string};
 
 function mapStateToProps(state){
     return{
-        email: state.user.email,
+        firstname: state.user.firstname,
+        lastname: state.user.lastname,
         iban: state.account.iban,
         limit: state.user.limit,
         message: state.settings.message

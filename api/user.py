@@ -17,8 +17,8 @@ userAPI = Blueprint('userAPI', __name__)
 def getUserData():
     logger.info('providing user data')
 
-    user = db_session.query(User, User.email, User.balance, User.limit).filter_by(id=str(current_identity)).first()
-    return jsonify(email=user.email, balance=user.balance, limit=user.limit)
+    user = db_session.query(User, User.email, User.firstName, User.lastName, User.balance, User.limit).filter_by(id=str(current_identity)).first()
+    return jsonify(email=user.email, firstname=user.firstName, lastname=user.lastName, balance=user.balance, limit=user.limit)
 
 
 @userAPI.route('/api/user/changeLimit', methods=['PUT'])
@@ -33,11 +33,11 @@ def changeLimit():
         stmt = update(User).where(User.id ==str(current_identity)).values(limit=limit)
         db_session.execute(stmt)
         db_session.commit()
-        message=('limit successfully changed to %s ',limit)
+        message='limit successfully changed to ' + limit
         return jsonify(message= message)
     except Exception, e:
         logger.info('update limit failed  ' + str(e))
-        return jsonify(message="exception occured during update limit request!")
+        return jsonify(message = "exception occured during update limit request!")
 
 
 
