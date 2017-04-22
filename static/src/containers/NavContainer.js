@@ -46,13 +46,13 @@ export class NavContainer extends Component{
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
                             <li><Link to="/overview">Overview</Link></li>
                             <li><Link to="/activity">Activity</Link></li>
-                            <li><Link to="#">New transfer</Link></li>
+                            <li><Link to="/transfer">New transfer</Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
                         <ul className="side-nav" id="mobile-nav">
                             <li><Link to="/overview">Overview</Link></li>
                             <li><Link to="/activity">Activity</Link></li>
-                            <li><Link to="#">New transfer</Link></li>
+                            <li><Link to="/transfer">New transfer</Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
 

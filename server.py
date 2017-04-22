@@ -52,6 +52,7 @@ app.register_blueprint(counterAPI)
 app.register_blueprint(userAPI)
 app.register_blueprint(accountAPI)
 app.register_blueprint(statsAPI)
+app.register_blueprint(transferAPI)
 
 # main route to serve react client
 @app.route('/', defaults={'path': ''})

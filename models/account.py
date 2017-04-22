@@ -11,7 +11,7 @@ class Account(Base):
     identifier = Column(String(50), nullable = True)
     
     userId = Column(Integer, ForeignKey("users.id"))
-    user = relationship("User", back_populates="account")
+    user = relationship("User", uselist = False, back_populates="account")
     
     outTransfers = relationship("Transfer", back_populates="senderAccount",foreign_keys='Transfer.senderAccountId')  
     inTransfers = relationship("Transfer", back_populates = "recipientAccount",foreign_keys='Transfer.recipientAccountId')

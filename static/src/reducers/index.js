@@ -5,6 +5,7 @@ import auth from './auth';
 import user from './user';
 import account from './account';
 import stats from './stats';
+import transfer from './transfer'
 
 const rootReducer = combineReducers({
     counter,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     user,
     account,
     stats,
+    transfer,
     routing
 });
 

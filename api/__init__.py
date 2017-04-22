@@ -8,3 +8,4 @@ from counter import counterAPI
 from user import userAPI
 from account import accountAPI
 from stats import statsAPI
+from transfer import transferAPI
