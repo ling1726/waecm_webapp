@@ -7,9 +7,7 @@ export function changeLimit(limit){
         dispatch({type: types.CHANGELIMIT_REQUEST});
 
         WebAPIUtils.changeLimit(limit).then((res)=> {
-            console.log("before success!")
             dispatch({type:types.CHANGELIMIT_SUCCESS, message: res.message});
-            console.log("after success!")
          }).catch((err)=>{
             dispatch({type: types.CHANGELIMIT_FAILED, error:err});
         })

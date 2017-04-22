@@ -1,6 +1,3 @@
-/**
- * Created by ubuntuvm on 18.04.17.
- */
 import React, {Component} from 'react';
 
 
@@ -35,12 +32,12 @@ export default class Settings extends React.Component{
                                     </div>
                                       <div className="row">
                                       <div className="input-field col s6">
-                                           current limit: <input disabled value={this.props.limit} id="user_limit" type="text" className="validate"/>
+                                           current limit: <input disabled value={this.props.limit + " €"}  id="user_limit" type="text" className="validate"/>
                                       </div>
                                     </div>
                                     <div className="row">
                                         <div className="input-field col s3">
-                                            <input ref="changeLimit" type="number" min="0.00" max="1000.00" className="validate" />
+                                            <input ref="changeLimit" type="number" min="0.00" className="validate" required="true" />
                                             <label htmlFor="changeLimit">change limit</label>
                                         </div>
                                         <div className="col s2"/>

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt import jwt_required
 from flask_jwt import current_identity
+from sqlalchemy import update
 from . import User
 from . import db_session
 import logging
@@ -24,16 +25,19 @@ def getUserData():
 @jwt_required()
 def changeLimit():
     logger.info('update limit')
-    data=request.get_json();
 
-    user = db_session.query(User, User.email, User.balance, User.limit).filter_by(id=str(current_identity)).first()
-
+    limit = request.json.get('limit')
     try:
-        user.limit=data['limit']
+        userId = str(current_identity)
+        print userId
+        stmt = update(User).where(User.id ==str(current_identity)).values(limit=limit)
+        db_session.execute(stmt)
         db_session.commit()
-        return jsonify (message="ok")
-    except:
-        logger.info('update limit failed')
-        return jsonify(message= "exception !")
+        message=('limit successfully changed to %s ',limit)
+        return jsonify(message= message)
+    except Exception, e:
+        logger.info('update limit failed  ' + str(e))
+        return jsonify(message="exception occured during update limit request!")
+
 
 
