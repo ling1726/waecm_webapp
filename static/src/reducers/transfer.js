@@ -7,7 +7,7 @@ export default function reducers(state = initialState, action){
         case types.TRANSFER_GET_DATA_REQUEST:
             return state;
         case types.TRANSFER_GET_DATA_SUCCESS:
-            return {...state};
+            return {...state, message: action.message};
         case types.TRANSFER_GET_DATA_FAILED:
             return {...state, error: true};
         case types.TRANSFER_CREATE_REQUEST:

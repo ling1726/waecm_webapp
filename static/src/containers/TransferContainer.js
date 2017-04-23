@@ -24,6 +24,7 @@ export class TransferContainer extends Component{
 
         if(message !== null){
             Materialize.toast(message, 4000);
+            transferActions.getTransfer();
         }
 
         return  <div>
