@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import logo from '../../img/logo.png';
+import setting from '../../icons/ic_settings_applications_white_24dp_1x.png'
 import * as AuthActions from '../actions/auth';
 
 export class NavContainer extends Component{
@@ -28,8 +29,9 @@ export class NavContainer extends Component{
         }
     }
 
-    render(){ 
+    render(){
         const logoStyle = {maxHeight: '64px', padding: '15px'}
+        const settingLogoStyle = {maxHeight: '75px', padding: '20px'}
         let loginLogoutButton = null;
         if(this.props.loggedIn){
             loginLogoutButton = <a onClick={ e => this.handleLogout(e)}>Logout</a>
@@ -47,12 +49,16 @@ export class NavContainer extends Component{
                             <li><Link to="/overview">Overview</Link></li>
                             <li><Link to="/activity">Activity</Link></li>
                             <li><Link to="/transfer">New transfer</Link></li>
+                            <li><Link to="#">New transfer</Link></li>
+                            <li><Link to="/Settings"> <img src={setting} style={settingLogoStyle} /></Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
                         <ul className="side-nav" id="mobile-nav">
                             <li><Link to="/overview">Overview</Link></li>
                             <li><Link to="/activity">Activity</Link></li>
                             <li><Link to="/transfer">New transfer</Link></li>
+                            <li><Link to="#">New transfer</Link></li>
+                            <li><Link to="/Settings"> <img src={setting} style={settingLogoStyle}/></Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
 

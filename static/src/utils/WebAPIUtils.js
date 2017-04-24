@@ -125,5 +125,17 @@ export default class {
             return res.data
         })
     }
+
+    static changeLimit(limit){
+        return axios({
+            url:'/api/user/changeLimit',
+            method: 'put',
+            data:JSON.stringify({"limit": limit}),
+            headers: {'Content-Type':'application/json' ,'Authorization': `JWT ${localStorage.token}`}
+        }).then((res)=>{
+            return res.data;
+        })
+
+    }
 }
 

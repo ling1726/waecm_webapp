@@ -4,8 +4,6 @@ const initialState = {
     firstName: null,
     lastName: null,
     email: null,
-    firstname: null,
-    lastname: null,
     balance:null,
     limit: null
 };

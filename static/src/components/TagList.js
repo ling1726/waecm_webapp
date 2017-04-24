@@ -6,7 +6,7 @@ export default class TagList extends Component{
         super(props);
     }
 
-    render(){debugger
+    render(){
         let tags = this.props.tags
 
         return     <div className="chips chips-initial">
