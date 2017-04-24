@@ -60,6 +60,10 @@ def createTransfer():
             transfer.tags.append(db_session.query(Tag).filter_by(title=tag).first())
 
         user.balance = user.balance - amount
+
+        recipient = recipientAccount.user
+        if (recipient != None):
+            recipient.balance = recipient.balance + amount
         db_session.add(transfer)
         db_session.commit()
     else:
