@@ -11,21 +11,35 @@ import * as SettingsActions from '../actions/settings'
 
 export class SettingsContainer extends Component{
 
+
+    constructor(props){
+        super(props);
+        this.state = {
+            showMessage: false
+        };
+    }
+
      componentDidMount(){
         const {userActions, accountActions} = this.props;
         userActions.getUserData();
         accountActions.getAccountData();
+
+
      }
 
-     willReceiveProps(nextProps){
-
-    }
+    componentWillReceiveProps(nextProps){
+        if(this.props.message != nextProps.message){
+            this.state.showMessage = true
+        }else{
+            this.state.showMessage = false
+        }
+     }
 
      render(){
          // ?
          const {settingsActions,message}=this.props
 
-         if(message!==null){
+         if(this.state.showMessage){
              Materialize.toast(message,4000);
          }
 
@@ -33,7 +47,7 @@ export class SettingsContainer extends Component{
                 <h2>Change limit</h2>
 
                 <Settings {...this.props}
-                          changeLimit={settingsActions.changeLimit}
+                          changeLimit={settingsActions.changeLimitAndUpdateUserData}
                 />
 
 
