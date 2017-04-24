@@ -32,6 +32,10 @@ class User(Base):
     def getFullName(self):
         return self.firstName + ' ' + self.lastName
 
+    def getTAN(self):
+        #mocked
+        return "100"+str(self.id)
+
     # equivalent of java's toString() method
     def __str__(self):
         return "User(id='%s')" % self.id

@@ -39,6 +39,7 @@ def createTransfer():
 
         receiverName = data['receiverName']
         comment = data['comment']
+        tan = data['tan']
 
         if (data['amount'] == None):
             return jsonify(message='No amount specified')
@@ -53,6 +54,9 @@ def createTransfer():
 
         if (receiverName == None):
             return jsonify(message='No sender name specified')
+
+        if (data['tan'] != user.getTAN()):
+            return jsonify(message='Invalid TAN') 
 
         transfer = Transfer(amount, datetime.now(), comment, senderAccount, recipientAccount, receiverName)
         tags = json.loads(data['tags'])
@@ -77,3 +81,12 @@ def getTags():
     tags = db_session.query(Tag).all()
     tag_titles = [ tag.title for tag in tags]
     return jsonify(tags=tag_titles)
+
+@transferAPI.route('/api/transfer/tan', methods=['GET'])
+@jwt_required()
+def getTAN():
+    logger.info('request TAN')
+    user = db_session.query(User).filter_by(id=str(current_identity)).first()
+    return jsonify(tan=True,message='Current TAN is ' + str(user.getTAN()))
+
+

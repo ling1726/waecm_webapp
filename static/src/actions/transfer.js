@@ -38,3 +38,14 @@ export function getTags(){
     }
 }
 
+export function getTAN(){
+    return dispatch =>{
+        dispatch({type: types.TRANSFER_GET_TAN_REQUEST});
+        WebAPIUtils.getTAN().then((res) => {
+            dispatch({type: types.TRANSFER_GET_TAN_SUCCESS, tan: res.tan, message: res.message});
+        }).catch((err) => {
+            dispatch({type: types.TRANSFER_GET_TAN_FAILED, error: err})
+        })
+    }
+}
+

@@ -118,12 +118,24 @@ export default class {
                 comment: transferData.comment,
                 recipientIban: transferData.receiver_iban,
                 receiverName: transferData.receiver_name,
-                tags: transferData.tags
+                tags: transferData.tags,
+                tan: transferData.tan
             }),
             headers: {'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
             return res.data
         })
     }
+    static getTAN(){
+        return axios({
+            url: '/api/transfer/tan',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
+
 }
 
