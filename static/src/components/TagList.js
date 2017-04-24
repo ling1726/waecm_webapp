@@ -14,9 +14,8 @@ export default class TagList extends Component{
                         tags
                             .map((tag) => {
                             return(
-                                <div className="chip">
-                                    <img src={placeholder} alt={placeholder}></img>
-                                    {tag}
+                                <div className={"chip " + tag[1]}>
+                                    <i className={tag[2]}> {tag[0]}</i>
                                 </div>
                                 )
                             })            

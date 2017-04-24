@@ -30,7 +30,7 @@ def getActivity():
     allTransfers = []
     
     for transfer in inTransfers:
-        tags = [ tag.title for tag in transfer.tags] 
+        tags = [ (tag.title, tag.color, tag.icon) for tag in transfer.tags] 
         allTransfers.append({'id': transfer.id,\
                             'amount': str(transfer.amount), \
                             'date': transfer.getReadableDate(),\
@@ -42,7 +42,7 @@ def getActivity():
                             'type': 'in'})
 
     for transfer in outTransfers:
-        tags = [tag.title for tag in transfer.tags]
+        tags = [ (tag.title, tag.color, tag.icon) for tag in transfer.tags]
         allTransfers.append({'id': transfer.id,\
                             'amount': str(transfer.amount),\
                             'date': transfer.getReadableDate(),\
