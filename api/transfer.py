@@ -18,6 +18,13 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 
 transferAPI = Blueprint('transferAPI', __name__)
 
+
+@transferAPI.route('/api/transfer', methods=['GET'])
+@jwt_required()
+def getTransfer():
+    return jsonify(message="")
+
+
 @transferAPI.route('/api/transfer', methods=['POST'])
 @jwt_required()
 def createTransfer():

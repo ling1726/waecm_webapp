@@ -8,7 +8,7 @@ export function getTransfer(){
 
         WebAPIUtils.getTransfer().then((res) => {
 
-            dispatch({type: types.TRANSFER_GET_DATA_SUCCESS});
+            dispatch({type: types.TRANSFER_GET_DATA_SUCCESS, message: res.message});
         }).catch((err) => {
             dispatch({type: types.TRANSFER_GET_DATA_FAILED, error: err})
         })
