@@ -6,6 +6,7 @@ from . import Account
 from . import User
 from . import Tag
 from . import db_session
+from sockets import socketio
 from datetime import datetime
 import json
 import logging
@@ -53,10 +54,13 @@ def createTransfer():
             transfer.tags.append(db_session.query(Tag).filter_by(title=tag).first())
 
         user.balance = user.balance - amount
+        recipientAccount.user.balance = recipientAccount.user.balance + amount
         db_session.add(transfer)
         db_session.commit()
     else:
         return jsonify(message='Unknown recipient account')
+
+    socketio.emit('NOTIFICATION', 'received a transfer of: '+ str(amount) +' euros from : '+user.getFullName()+'at '+transfer.getReadableDate()+' '+transfer.getTime(), room=recipientAccount.userId) 
     return jsonify(message='Your transfer was conducted')
 
 @transferAPI.route('/api/transfer/tags', methods=['GET'])
