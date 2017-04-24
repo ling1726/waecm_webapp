@@ -4,7 +4,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from models import *
 import time, os
 
-engine = create_engine('mysql+pymysql://waecmuser:waecmpassword@127.0.0.1/waecm', convert_unicode = True)
+engine = create_engine('mysql+pymysql://waecmuser:waecmpassword@127.0.0.1/waecm?charset=utf8', convert_unicode = True)
 db_session = scoped_session(sessionmaker(autocommit = False, autoflush = False, bind = engine))
 
 #Base = declarative_base()
