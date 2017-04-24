@@ -3,7 +3,6 @@ import {combineReducers} from 'redux';
 import counter from './counter';
 import auth from './auth';
 import user from './user';
-import account from './account';
 import stats from './stats';
 import transfer from './transfer'
 import account from './account'

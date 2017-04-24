@@ -64,8 +64,8 @@ export class SettingsContainer extends Component{
 
 function mapStateToProps(state){
     return{
-        firstname: state.user.firstname,
-        lastname: state.user.lastname,
+        firstname: state.user.firstName,
+        lastname: state.user.lastName,
         iban: state.account.iban,
         limit: state.user.limit,
         message: state.settings.message

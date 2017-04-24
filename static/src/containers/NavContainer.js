@@ -31,7 +31,7 @@ export class NavContainer extends Component{
 
     render(){
         const logoStyle = {maxHeight: '64px', padding: '15px'}
-        const settingLogoStyle = {maxHeight: '75px', padding: '20px'}
+        const settingLogoStyle = {maxHeight: '64px', padding: '20px'}
         let loginLogoutButton = null;
         if(this.props.loggedIn){
             loginLogoutButton = <a onClick={ e => this.handleLogout(e)}>Logout</a>
@@ -49,7 +49,6 @@ export class NavContainer extends Component{
                             <li><Link to="/overview">Overview</Link></li>
                             <li><Link to="/activity">Activity</Link></li>
                             <li><Link to="/transfer">New transfer</Link></li>
-                            <li><Link to="#">New transfer</Link></li>
                             <li><Link to="/Settings"> <img src={setting} style={settingLogoStyle} /></Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
@@ -57,7 +56,6 @@ export class NavContainer extends Component{
                             <li><Link to="/overview">Overview</Link></li>
                             <li><Link to="/activity">Activity</Link></li>
                             <li><Link to="/transfer">New transfer</Link></li>
-                            <li><Link to="#">New transfer</Link></li>
                             <li><Link to="/Settings"> <img src={setting} style={settingLogoStyle}/></Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
