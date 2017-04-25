@@ -27,7 +27,7 @@ export class OverviewContainer extends Component{
 
     }
 
-    render(){
+    render(){ 
         const {statsActions} = this.props;
 
         return  <div>

@@ -33,7 +33,7 @@ export default class ActivityListElement extends Component{
                 <i className="fa fa-comment"></i>
                 <span> {this.props.comment}</span>
             </div>
-            <TagList tags={this.props.tags}/>
+            <TagList tags={this.props.tags} transferId={this.props.transferId}/>
         </li>
 
     }

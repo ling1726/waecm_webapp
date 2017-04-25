@@ -16,9 +16,10 @@ export default class ActivityList extends Component{
                             .sort((a, b) => {
                                 return b.timestamp-a.timestamp
                             })
-                            .map((transfer) => {
+                            .map((transfer) =>{ 
                             return(
                                 <ActivityListElement
+                                    transferId={transfer.id}
                                     key={transfer.id}
                                     externalParty={transfer.externalParty}
                                     amount={transfer.amount}

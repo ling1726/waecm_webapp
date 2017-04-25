@@ -77,6 +77,7 @@ def create_testdata():
     tag3 = Tag("Accommodation", "green lighten-3", "fa fa-home")
     tag4 = Tag("Subscriptions", "gray", "fa fa-pencil")
     tag5 = Tag("Shopping", "amber lighten-3", "fa fa-shopping-bag")
+    tag6 = Tag("Utility", "pink accent-3", "fa fa-wrench")
 
     transfer1.tags.append(tag1)
     transfer1.tags.append(tag4)

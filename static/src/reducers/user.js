@@ -9,7 +9,7 @@ const initialState = {
     remaining: null
 };
 
-export default function reducers(state = initialState, action){ debugger
+export default function reducers(state = initialState, action){ 
     switch (action.type){
         case types.USER_GET_DATA_REQUEST:
             return state;
