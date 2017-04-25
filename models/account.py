@@ -13,7 +13,7 @@ class Account(Base):
     userId = Column(Integer, ForeignKey("users.id"))
     user = relationship("User", uselist = False, back_populates="account")
     
-    outTransfers = relationship("Transfer", back_populates="senderAccount",foreign_keys='Transfer.senderAccountId')  
+    outTransfers = relationship("Transfer", back_populates="senderAccount",foreign_keys='Transfer.senderAccountId', lazy='dynamic')  
     inTransfers = relationship("Transfer", back_populates = "recipientAccount",foreign_keys='Transfer.recipientAccountId')
 
     # constructor - DONT initialize id

@@ -27,6 +27,11 @@ export default class OverviewCard extends Component{
                                     <span className="mini_header">Limit  </span>
                                     {this.props.limit} €
                                 </div>
+                             
+                                <div className="col s3 m3 l3">
+                                    <span className="mini_header">Remaining Amount  </span>
+                                    {this.props.remaining} €
+                                </div>
                                 
                                 <div className="col s3 m3 l3 right">
                                     <span className="mini_header">BIC  </span>

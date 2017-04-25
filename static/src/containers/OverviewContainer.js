@@ -50,6 +50,7 @@ OverviewContainer.propTypes = {
     bic: PropTypes.string,
     balance: PropTypes.number,
     limit: PropTypes.number,
+    remaining: PropTypes.number,
     statsInterval: PropTypes.string,
     showDifference: PropTypes.bool,
 };
@@ -63,6 +64,7 @@ function mapStateToProps(state){
         bic: state.account.bic,
         balance: state.user.balance,
         limit: state.user.limit,
+        remaining: state.user.remaining,
         statsInterval: state.stats.interval,
         datapoints: state.stats.datapoints,
         showDifference: state.stats.showDifference,

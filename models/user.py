@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Float, String, ForeignKey
+from sqlalchemy import Column, Integer, Numeric, String, ForeignKey
 from sqlalchemy.orm import relationship
 from base import Base
 import bcrypt
@@ -11,8 +11,8 @@ class User(Base):
     lastName = Column(String(200), nullable = False)
     email = Column(String(254), nullable = False, unique = True)
     password = Column(String(100), nullable = False)
-    balance = Column(Float, nullable = False)
-    limit = Column(Float,nullable = False)
+    balance = Column(Numeric(12,2), nullable = False)
+    limit = Column(Numeric(12,2),nullable = False)
     notifications = relationship("Notification", back_populates = "user")  
     account = relationship("Account", back_populates = "user", uselist = False)
 

@@ -4,6 +4,7 @@ from flask_jwt import current_identity
 from . import Transfer
 from . import Account
 from . import User
+from decimal import Decimal
 from . import Tag
 from . import db_session
 from sockets import socketio
@@ -46,7 +47,7 @@ def createTransfer():
             return jsonify(message='No amount specified')
 
         try:
-            amount = float(data['amount'])
+            amount = Decimal(data['amount'])
         except ValueError:
             return jsonify(message='Invalid amount specified')
 

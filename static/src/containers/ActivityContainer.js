@@ -20,7 +20,7 @@ export class ActivityContainer extends Component{
     }
 
     render(){
-        const {email, iban, bic, balance, limit, transfers} = this.props
+        const {email, iban, bic, balance, limit, remaining, transfers} = this.props
 
         return  <div>
 
@@ -30,6 +30,7 @@ export class ActivityContainer extends Component{
                     bic={bic}
                     balance={balance}
                     limit={limit}
+                    remaining={remaining}
                 />
                 <ActivityList transfers={transfers}/>
         </div>
@@ -41,7 +42,8 @@ ActivityContainer.propTypes = {
     iban: PropTypes.string,
     bic: PropTypes.string,
     balance: PropTypes.number,
-    limit: PropTypes.number
+    limit: PropTypes.number,
+    remaining: PropTypes.number
 };
 
 function mapStateToProps(state){
@@ -51,6 +53,7 @@ function mapStateToProps(state){
         bic: state.account.bic,
         balance: state.user.balance,
         limit: state.user.limit,
+        remaining: state.user.remaining,
         transfers: state.account.transfers
 
     };
