@@ -5,7 +5,7 @@ export default class OverviewCard extends Component{
         super(props);
     }
 
-    render(){
+    render(){ 
         let color = "green-text text-accent-4";
         if(this.props.balance <= 0) color = "red-text text-accent-4" 
         

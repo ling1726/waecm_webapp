@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_jwt import jwt_required
 from flask_jwt import current_identity
 from sqlalchemy import update
+from util.DecimalEncoder import DecimalEncoder
 from . import User, Transfer
 from . import db_session
 import logging
