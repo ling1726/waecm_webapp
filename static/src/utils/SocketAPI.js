@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import * as types from '../actions/types'
 
-const url = "http://localhost:8080";
+const url = "https://localhost:8080";
 
 
 export default class SocketAPI{

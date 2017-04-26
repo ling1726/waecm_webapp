@@ -14,7 +14,7 @@ Or ``deploy`` can simply be used on its own
 > $ (sudo) docker run -p 8080:8080 waecm-bsp1 deploy
 
 The ``-p 8080:8080`` option allows docker to forward requests through localhost
-where the app can be reached by the url ``http://localhost:8080``
+where the app can be reached by the url ``https://localhost:8080``
 
 without ``-p 8080:8080`` the user must use docker to find and use the ip address of the container
 
@@ -29,14 +29,14 @@ The following app is consists of:
 #### API Server
 The backend consists of an API server which provides services to the front end client e.g:
 
-> http://localhost:8080/api/counter
+> https://localhost:8080/api/counter
 
 #### Authentication
 The app uses JWT authentication
 
 The authentication service is not considered a part of the API and can be reached through the root path:
 
-> http://localhost:8080/auth
+> https://localhost:8080/auth
 
 A post request that is successfully authenticated to the above address will return a valid JWT token
 
