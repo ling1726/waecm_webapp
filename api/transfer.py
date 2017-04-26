@@ -92,6 +92,6 @@ def getTags():
 def getTAN():
     logger.info('request TAN')
     user = db_session.query(User).filter_by(id=str(current_identity)).first()
-    return jsonify(tan=True,message='Current TAN is ' + str(user.getTAN()))
+    return jsonify(message='Current TAN is ' + str(user.getTAN()))
 
 

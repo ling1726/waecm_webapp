@@ -20,7 +20,7 @@ export class TransferContainer extends Component{
     }
 
     render(){ 
-        const {transferActions, message, tan} = this.props;
+        const {transferActions, message} = this.props;
 
         if(message !== null){
             Materialize.toast(message, 4000);
@@ -43,8 +43,7 @@ TransferContainer.propTypes = {
     lastname: PropTypes.string,
     firstname: PropTypes.string,
     iban: PropTypes.string,
-    message: PropTypes.string,
-    tan: PropTypes.bool
+    message: PropTypes.string
 };
 
 function mapStateToProps(state){
@@ -53,8 +52,7 @@ function mapStateToProps(state){
         firstname: state.user.firstName,
         iban: state.account.iban,
         message: state.transfer.message,
-        tags: state.transfer.tags,
-        tan: state.transfer.tan
+        tags: state.transfer.tags
     };
 }
 
