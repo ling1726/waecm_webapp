@@ -43,7 +43,8 @@ TransferContainer.propTypes = {
     lastname: PropTypes.string,
     firstname: PropTypes.string,
     iban: PropTypes.string,
-    message: PropTypes.string
+    message: PropTypes.string,
+    tags: PropTypes.array
 };
 
 function mapStateToProps(state){

@@ -29,7 +29,6 @@ export default class Transfer extends Component{
     }
 
     componentDidMount(){
-        Materialize.updateTextFields();
     }
  
     componentDidUpdate() {
