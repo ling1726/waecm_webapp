@@ -21,6 +21,10 @@ export default class ActivityListElement extends Component{
                 {amountDisplay}
             </div>
             <div>
+                <i className="fa fa-user-circle"></i>
+                <span> {this.props.externalPartyIban}</span>
+            </div>
+            <div>
                 <i className="fa fa-calendar"></i>
                 <span> {this.props.date}</span>
             </div>

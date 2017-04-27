@@ -22,6 +22,7 @@ export default class ActivityList extends Component{
                                     transferId={transfer.id}
                                     key={transfer.id}
                                     externalParty={transfer.externalParty}
+                                    externalPartyIban={transfer.externalPartyIban}
                                     amount={transfer.amount}
                                     date={transfer.date}
                                     time = {transfer.time}

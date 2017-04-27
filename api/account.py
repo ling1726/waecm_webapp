@@ -38,6 +38,7 @@ def getActivity():
                             'timestamp':transfer.getTimestamp(),\
                             'comment': transfer.comment, \
                             'externalParty': transfer.getSenderName(), 
+                            'externalPartyIban': transfer.senderAccount.iban, 
                             'tags': tags,\
                             'type': 'in'})
 
@@ -50,6 +51,7 @@ def getActivity():
                             'timestamp':transfer.getTimestamp(),\
                             'comment': transfer.comment, \
                             'externalParty': transfer.recipientName,\
+                            'externalPartyIban': transfer.recipientAccount.iban,\
                             'tags': tags,\
                             'type':'out'})
     return jsonify(transfers=allTransfers)
