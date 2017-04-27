@@ -5,6 +5,7 @@ from sqlalchemy import update
 from util.DecimalEncoder import DecimalEncoder
 from . import User, Transfer
 from . import db_session
+from decimal import Decimal
 import logging
 import sys
 import datetime
@@ -46,6 +47,10 @@ def changeLimit():
     try:
         userId = str(current_identity)
         print userId
+
+        if (Decimal(limit) < 0):
+            return jsonify(message = "limit cannot be negative!")
+
         stmt = update(User).where(User.id ==str(current_identity)).values(limit=limit)
         db_session.execute(stmt)
         db_session.commit()

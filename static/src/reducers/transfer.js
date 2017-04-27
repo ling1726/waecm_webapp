@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 
 const initialState = {message: null, error: false, tags:[]}
 
-export default function reducers(state = initialState, action){
+export default function reducers(state = initialState, action){debugger
     switch (action.type){
         case types.TRANSFER_GET_DATA_REQUEST:
             return state;
@@ -11,7 +11,7 @@ export default function reducers(state = initialState, action){
         case types.TRANSFER_GET_DATA_FAILED:
             return {...state, error: true};
         case types.TRANSFER_CREATE_REQUEST:
-            return {...state, tan: undefined};
+            return {...state};
         case types.TRANSFER_CREATE_SUCCESS:
             return {...state, message: action.message};
         case types.TRANSFER_CREATE_FAILED:
@@ -25,7 +25,7 @@ export default function reducers(state = initialState, action){
         case types.TRANSFER_GET_TAN_REQUEST:
             return state;
         case types.TRANSFER_GET_TAN_SUCCESS:
-            return {...state, tan: action.tan, message: action.message}
+            return {...state, message: action.message}
         case types.TRANSFER_GET_TAN_FAILED:
             return {...state, error: true};
 

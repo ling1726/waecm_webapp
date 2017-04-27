@@ -1,4 +1,9 @@
 import os, logging, sys, jwt
+import ssl
+
+from gevent import monkey
+monkey.patch_all()
+
 from flask import Flask, session, jsonify,  request, session, redirect, url_for, Response, render_template 
 from json import dumps
 from flask_jwt import JWT, jwt_required, current_identity
@@ -7,6 +12,7 @@ from models import *
 from auth import *
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from sockets import socketio
+
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -70,7 +76,9 @@ if __name__ == '__main__':
     create_testdata()
     socketio.init_app(app)
     if os.environ['DEV'] == 'true':
-        socketio.run(app, host='0.0.0.0', port=8080, debug=True)
+        socketio.run(app, host='0.0.0.0', port=8080, debug=True, 
+                     certfile='ssl/server.crt', keyfile='ssl/server.key')
     else:
-        socketio.run(app, host='0.0.0.0', port=8080)
+        socketio.run(app, host='0.0.0.0', port=8080,  
+                     certfile='ssl/server.crt', keyfile='ssl/server.key')
 

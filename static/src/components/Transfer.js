@@ -23,15 +23,12 @@ export default class Transfer extends Component{
     }
     handleTransfer = (event) => {
         event.preventDefault();
-        for (const field in this.refs) { 
-            this.formData[field] = this.refs[field].value;
-        }
+        this.formData["tan"] = this.refs["tan"].value;
         this.props.createTransfer(this.formData);
         this.formData = {};
     }
 
     componentDidMount(){
-        Materialize.updateTextFields();
     }
  
     componentDidUpdate() {
@@ -40,7 +37,7 @@ export default class Transfer extends Component{
     }
 
     render(){
-        if(this.props.tan == null ) {
+        if(Object.keys(this.formData).length === 0) {
         return  <div>
                   <div className="row">
                     <div className="col s12">
