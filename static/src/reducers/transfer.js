@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 
 const initialState = {message: null, error: false, tags:[]}
 
-export default function reducers(state = initialState, action){debugger
+export default function reducers(state = initialState, action){
     switch (action.type){
         case types.TRANSFER_GET_DATA_REQUEST:
             return state;

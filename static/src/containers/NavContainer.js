@@ -22,7 +22,7 @@ export class NavContainer extends Component{
         $(".button-collapse").sideNav();
     }
 
-    componentDidUpdate(){debugger
+    componentDidUpdate(){
         if(this.state.notification !== this.props.notification){
             this.state.notification = this.props.notification;
             Materialize.toast(this.state.notification, 5000);
