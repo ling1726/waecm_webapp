@@ -1,8 +1,8 @@
 import * as types from '../actions/types';
 
 const initialState = {
-                        token: null, 
-                        isLogged: false, 
+                        token: localStorage.token, 
+                        isLogged: (typeof localStorage.token !== 'undefined'), 
                         error: false, 
                         notification: null
                     }
