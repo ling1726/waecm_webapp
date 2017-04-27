@@ -21,7 +21,7 @@ without ``-p 8080:8080`` the user must use docker to find and use the ip address
 ## Architecture & Design
 The following app is consists of:
 
-- Python flask server (backend)
+- Python flask server running under gevent to accomodate WebSocket API(backend)
 - ReactJS front end usig Redux architecture
 - MySQL Database
 
