@@ -76,7 +76,8 @@ def createTransfer():
     else:
         return jsonify(message='Unknown recipient account')
 
-    socketio.emit('NOTIFICATION', 'received a transfer of: '+ str(amount) +' euros from : '+user.getFullName()+'at '+transfer.getReadableDate()+' '+transfer.getTime(), room=recipientAccount.userId) 
+    if (recipientAccount.userId != None):
+        socketio.emit('NOTIFICATION', 'received a transfer of: '+ str(amount) +' euros from : '+user.getFullName()+'at '+transfer.getReadableDate()+' '+transfer.getTime(), room=recipientAccount.userId) 
     return jsonify(message='Your transfer was conducted')
 
 @transferAPI.route('/api/transfer/tags', methods=['GET'])
