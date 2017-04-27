@@ -2,7 +2,7 @@
 
 ## Deployment
 From the root of the proejct run the following command to build the project:
-> $ (sudo) docker build -t waecm-bsp1 .
+> $ (sudo) docker build -t waecm-bsp2 .
 
 The following command starts the container and installs dependencies
 > $ (sudo) docker run -p 8080:8080 waecm-bsp1 build
@@ -11,7 +11,7 @@ It can also be chained with the ``deploy`` option to start the application
 > $ (sudo) docker run -p 8080:8080 waecm-bsp1 build deploy
 
 Or ``deploy`` can simply be used on its own
-> $ (sudo) docker run -p 8080:8080 waecm-bsp1 deploy
+> $ (sudo) docker run -p 8080:8080 waecm-bsp2 deploy
 
 The ``-p 8080:8080`` option allows docker to forward requests through localhost
 where the app can be reached by the url ``https://localhost:8080``
@@ -29,7 +29,7 @@ The following app is consists of:
 #### API Server
 The backend consists of an API server which provides services to the front end client e.g:
 
-> https://localhost:8080/api/counter
+> https://localhost:8080/api/user
 
 #### Authentication
 The app uses JWT authentication
@@ -42,6 +42,16 @@ A post request that is successfully authenticated to the above address will retu
 
 The JWT token must be sent as an authorization header **with the JWT prefix and NOT the Bearer prefix** with requests to protected routes
 > {Authorization: JWT xxxxxxxxxxxxxxxxx}
+
+#### Test user login
+There are three test users available:
+
+- username, password, mTAN auth
+- maxmustermann@gmail.com, maxmustermann, 1001
+- gabimusterfrau@gmail.com, gabimusterfrau, 1002
+- erikatest@gmail.com, erikatest, 1003
+
+
 ### Frontend
 The frontend is a ReactJS client using Redux architecture. Styling is handled by the materialize library.
 Source code can be found under ``/static/src`` and production bundled files under ``/static/prod``
