@@ -37,7 +37,6 @@ export class OverviewContainer extends Component{
                 <StatisticsFilter interval={this.props.statsInterval} changeInterval={statsActions.getStatsForInterval}
                                    setShowDiff={statsActions.setShowDifference}></StatisticsFilter>
                 <StatisticsGraph interval={this.props.statsInterval} data={this.props.datapoints} diff={this.props.showDifference}></StatisticsGraph>
-                <StatisticsTable data={this.props.datapoints} ></StatisticsTable>
         </div>
     };
 }
