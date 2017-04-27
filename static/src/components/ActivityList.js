@@ -28,6 +28,7 @@ export default class ActivityList extends Component{
                                     type={transfer.type}
                                     tags={transfer.tags}
                                     comment={transfer.comment}
+                                    assignTags={this.props.assignTags}
                                 />
                                 )
                             })            

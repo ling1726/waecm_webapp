@@ -8,9 +8,7 @@ export default class TagList extends Component{
 
     render(){
         let tags = this.props.tags
-
         return     <div className="chips chips-initial chips-placeholder">
-                   <TagChoice transferId={this.props.transferId}/>
                      {
                         tags
                             .map((tag) => {

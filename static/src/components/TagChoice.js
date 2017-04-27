@@ -3,6 +3,21 @@ import React, {Component} from 'react';
 export default class TagChoice extends Component{
     constructor(props){
         super(props);
+        let tags = []
+        this.props.tags.forEach((tag) => {
+            tags.push(tag[0]);
+        })
+        this.state = {tags: tags}
+    }
+
+    handleAssignTags(event){debugger
+        event.preventDefault();
+        this.props.assignTags(this.state.tags, this.props.transferId);
+    }
+    
+
+    handleChange(event){ debugger
+        this.setState({tags: event.target.value})
     }
 
     componentDidMount(){
@@ -16,17 +31,19 @@ export default class TagChoice extends Component{
                 <div className="modal-content">
                     <h4>Categories</h4>
                     <div className="input-field">
-                        <select multiple>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 5</option>
+                        <select value={this.state.tags} onChange={this.handleChange.bind(this)} multiple>
+                            <option value="Leisure">Leisure</option>
+                            <option value="Insurance">Insurance</option>
+                            <option value="Accomodation">Acomodation</option>
+                            <option value="Subscriptions">Subscriptions</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Utility">Utiity</option>
                         </select>
                         <label>Categories</label>
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Confirm</a>
+                    <button className="modal-action modal-close waves-effect waves-green btn-flat " onClick={this.handleAssignTags.bind(this)}>Confirm</button>
                 </div>
                 </div>    
                 </div>
