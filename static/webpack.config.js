@@ -23,7 +23,12 @@ module.exports = {
             inject: 'body',
             filename: 'index.html'
         }),
-        new HtmlWebpackIncludeAssetsPlugin({assets: ['../css/materialize.min.css','../js/jquery-3.2.0.min.js','../js/materialize.min.js'], append:true}),
+        new HtmlWebpackIncludeAssetsPlugin({
+            assets: [
+                '../css/materialize.min.css',
+                '../js/jquery-3.2.0.min.js',
+                '../js/materialize.min.js',
+                '../css/font-awesome.min.css'], append:true}),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),

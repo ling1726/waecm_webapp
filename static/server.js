@@ -22,9 +22,9 @@ new WebpackDevServer(webpack(config), {
       chunkModules: false
     },
     proxy:{
-        '/api/*': 'http://localhost:8080',
-        '/auth': 'http://localhost:8080',
-        '/checkAuth' : 'http://localhost:8080'
+        '/api/*': 'https://localhost:8080',
+        '/auth': 'https://localhost:8080',
+        '/checkAuth' : 'https://localhost:8080'
     }
 }).listen(3000, 'localhost', function (err) {
     if (err) {

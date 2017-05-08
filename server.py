@@ -1,29 +1,33 @@
-import os, logging
+import os, logging, sys, jwt
+import ssl
+
+from gevent import monkey
+monkey.patch_all()
+
 from flask import Flask, session, jsonify,  request, session, redirect, url_for, Response, render_template 
 from json import dumps
 from flask_jwt import JWT, jwt_required, current_identity
 from database import db_session, init_db, create_testdata
 from models import *
 from auth import *
-from api import *
+from flask_socketio import SocketIO, join_room, leave_room, emit
+from sockets import socketio
 
+
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler(sys.stdout))
 
 
 ######################################
 ### CREATE APP
 #####################################
-if os.environ['DEV'] == 'true':
+if 'DEV' in os.environ and  os.environ['DEV'] == 'true':
     app = Flask(__name__, template_folder='./static/dist')
 else:
     app = Flask(__name__, template_folder='./static/prod')
 
 app.secret_key = os.urandom(12)
-
-######################################
-# JWT CONFIG
-######################################
-jwt = JWT(app, authenticate, identity)
-
 
 ######################################
 ### APP CONFIG
@@ -34,6 +38,13 @@ app.config.update(dict(
     PASSWORD='toto'
 ))
 
+
+######################################
+### JWT CONFIG
+######################################
+auth = JWT(app, authenticate, identity)
+
+
 # to remove db_session at the end of a request
 @app.teardown_appcontext
 def shutdown_session(exception = None):
@@ -43,9 +54,13 @@ def shutdown_session(exception = None):
 ####################################### 
 ### REGISTER API ROUTES      
 #######################################
+from api import *
+
 app.register_blueprint(counterAPI)
 app.register_blueprint(userAPI)
 app.register_blueprint(accountAPI)
+app.register_blueprint(statsAPI)
+app.register_blueprint(transferAPI)
 
 # main route to serve react client
 @app.route('/', defaults={'path': ''})
@@ -53,18 +68,17 @@ app.register_blueprint(accountAPI)
 def home(path):
     return render_template('index.html')    
 
-# route to check authenticity of jwt token
-@app.route('/checkAuth', methods=['POST'])
-@jwt_required()
-def checkAuth():
-    return jsonify(value=True)
+
 
 if __name__ == '__main__':
     app.logger.info('Stating up Flask')
     init_db()
     create_testdata()
+    socketio.init_app(app)
     if os.environ['DEV'] == 'true':
-        app.run(host='0.0.0.0', port=8080, debug=True)
+        socketio.run(app, host='0.0.0.0', port=8080, debug=True, 
+                     certfile='ssl/server.crt', keyfile='ssl/server.key')
     else:
-        app.run(host='0.0.0.0', port=8080)
+        socketio.run(app, host='0.0.0.0', port=8080,  
+                     certfile='ssl/server.crt', keyfile='ssl/server.key')
 

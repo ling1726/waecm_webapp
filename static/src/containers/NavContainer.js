@@ -3,36 +3,63 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import logo from '../../img/logo.png';
+import setting from '../../icons/ic_settings_applications_white_24dp_1x.png'
 import * as AuthActions from '../actions/auth';
 
 export class NavContainer extends Component{
 
+    constructor(props){
+        super(props);
+        this.state = {notification: this.props.notification};
+    }
 
     handleLogout(){
         console.log('logging user out');
         this.props.authActions.logout();
     }
 
-    render(){ 
+    componentDidMount(){
+        $(".button-collapse").sideNav();
+    }
+
+    componentDidUpdate(){
+        if(this.state.notification !== this.props.notification){
+            this.state.notification = this.props.notification;
+            Materialize.toast(this.state.notification, 5000);
+        }
+    }
+
+    render(){
         const logoStyle = {maxHeight: '64px', padding: '15px'}
+        const settingLogoStyle = {maxHeight: '64px', padding: '20px'}
         let loginLogoutButton = null;
         if(this.props.loggedIn){
             loginLogoutButton = <a onClick={ e => this.handleLogout(e)}>Logout</a>
         }else{
-            loginLogoutButton = <a href="/">Login</a>
+            loginLogoutButton = <a href="/"> Login</a>
         }
 
         return <nav className={"nav-extended"}>
                     <div className={"nav-wrapper"}>
-                        <Link to="/" className="brand-logo">
+                        <Link to="/overview" className="brand-logo">
                             <img src={logo} style={logoStyle}/>
                         </Link>
-                        <ul id="nav-mobile" className="right">
-                            <li><a href="/overview">Overview</a></li>
-                            <li><a href="#">Transactions</a></li>
-                            <li><a href="#">New transfer</a></li>
+                        <a href="#" data-activates="mobile-nav" className="button-collapse"><i className="fa fa-bars"></i></a>
+                        <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            <li><Link to="/overview">Overview</Link></li>
+                            <li><Link to="/activity">Activity</Link></li>
+                            <li><Link to="/transfer">New transfer</Link></li>
+                            <li><Link to="/Settings"> <img src={setting} style={settingLogoStyle} /></Link></li>
                             <li>{loginLogoutButton}</li>
                         </ul>
+                        <ul className="side-nav" id="mobile-nav">
+                            <li><Link to="/overview">Overview</Link></li>
+                            <li><Link to="/activity">Activity</Link></li>
+                            <li><Link to="/transfer">New transfer</Link></li>
+                            <li><Link to="/Settings"> <img src={setting} style={settingLogoStyle}/></Link></li>
+                            <li>{loginLogoutButton}</li>
+                        </ul>
+
                     </div>
                                         
                 </nav>
@@ -46,7 +73,8 @@ NavContainer.propTypes = {
 
 function mapStateToProps(state){
     return{
-        loggedIn: state.auth.isLogged
+        loggedIn: state.auth.isLogged,
+        notification: state.auth.notification
     };
 }
 

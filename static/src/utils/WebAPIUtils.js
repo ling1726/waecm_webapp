@@ -50,11 +50,7 @@ export default class {
             method: 'get',
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
-
             return res.data
-        }).catch((err) => {
-
-            return err
         })
     }
 
@@ -66,9 +62,92 @@ export default class {
             headers: {'Authorization': `JWT ${localStorage.token}`}
         }).then((res) => {
             return res.data
-        }).catch((err) => {
-
-            return err
         })
     }
+
+    static getActivity(){
+        return axios({
+            url: '/api/account/activity',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
+    static getStatsData(interval){
+        return axios({
+            url: '/api/stats',
+            method: 'get',
+            params: {
+                interval: interval,
+                diff: false
+            },
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
+    static getTransfer(){
+        return axios({
+            url: '/api/transfer',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
+    static getTags(){
+        return axios({
+            url: '/api/transfer/tags',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
+    static createTransfer(transferData){
+        return axios({
+            url: '/api/transfer',
+            method: 'post',
+            data:JSON.stringify({
+                amount: transferData.amount,
+                comment: transferData.comment,
+                recipientIban: transferData.receiver_iban,
+                receiverName: transferData.receiver_name,
+                tags: transferData.tags,
+                tan: transferData.tan
+            }),
+            headers: {'Content-Type': 'application/json', 'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
+    static changeLimit(limit){
+        return axios({
+            url:'/api/user/changeLimit',
+            method: 'put',
+            data:JSON.stringify({"limit": limit}),
+            headers: {'Content-Type':'application/json' ,'Authorization': `JWT ${localStorage.token}`}
+        }).then((res)=>{
+            return res.data;
+        })
+
+    }
+
+    static getTAN(){
+        return axios({
+            url: '/api/transfer/tan',
+            method: 'get',
+            headers: {'Authorization': `JWT ${localStorage.token}`}
+        }).then((res) => {
+            return res.data
+        })
+    }
+
 }
+
