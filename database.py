@@ -4,7 +4,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from models import *
 import time, os
 
-engine = create_engine('mysql+pymysql://waecmuser:waecmpassword@127.0.0.1/waecm?charset=utf8', convert_unicode = True)
+engine = create_engine('mysql+pymysql://waecmuser:waecmpassword@db/waecm?charset=utf8', convert_unicode = True)
 db_session = scoped_session(sessionmaker(autocommit = False, autoflush = False, bind = engine))
 
 #Base = declarative_base()
@@ -18,12 +18,12 @@ def init_db():
             break
         except exc.SQLAlchemyError:
             time.sleep(1)
-            print 'error connecting to the database: [', exc.SQLAlchemyError, '] trying again' 
+            print 'error connecting to the database: [', exc.SQLAlchemyError, '] trying again'
 
     Base.query = db_session.query_property()
-    # drop and create behavious if in dev mode 
+    # drop and create behavious if in dev mode
     if os.environ['DEV'] == 'true':
-        Base.metadata.drop_all(bind = engine) 
+        Base.metadata.drop_all(bind = engine)
     Base.metadata.create_all(bind = engine)
 
 def create_testdata():
@@ -145,4 +145,3 @@ def create_testdata():
     db_session.add(Transfer(16.40,"2017-01-22 12:12:00","Ueberweisung 4",account1,account3,"Erika Test"))
 
     db_session.commit()
-
