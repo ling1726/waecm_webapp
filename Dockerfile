@@ -4,6 +4,7 @@ MAINTAINER e1027203@student.tuwien.ac.at
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt update && apt upgrade -y && apt install -y nodejs
 
+RUN apt update && apt upgrade -y && apt install -y monit
 
 COPY . /app
 

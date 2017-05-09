@@ -22,9 +22,10 @@ def init_db():
 
     Base.query = db_session.query_property()
     # drop and create behavious if in dev mode
-    if os.environ['DEV'] == 'true':
-        Base.metadata.drop_all(bind = engine)
-    Base.metadata.create_all(bind = engine)
+    #if os.environ['DEV'] == 'true':
+    #    Base.metadata.drop_all(bind = engine)
+    Base.metadata.create_all(bind = engine, checkfirst=True)
+
 
 def create_testdata():
     # check if data exists
