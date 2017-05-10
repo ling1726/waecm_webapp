@@ -1,8 +1,7 @@
 #!/bin/bash
 export DEV=false
 
-
-
+/etc/init.d/monit start
 su web
 
 function build(){
@@ -18,7 +17,7 @@ function build_dev(){
 	echo "installing dependencies and building app for development"
 	pip install -r requirements.txt
 	cd static
-	npm install
+	npm install 
 	npm run build-dev
 	npm run watch-dev&
 	cd ..
@@ -26,7 +25,7 @@ function build_dev(){
 }
 function deploy(){
 	echo "run app"
-	python server.py
+	/app/monit/scripts/backend.sh start
 }
 
 if [ "$1" = "build" ]; then
@@ -46,3 +45,5 @@ if [ "$1" = "dev" ]; then
 	build_dev
 	deploy
 fi
+
+sleep infinity

@@ -75,7 +75,7 @@ if __name__ == '__main__':
     init_db()
     create_testdata()
     socketio.init_app(app)
-    if os.environ['DEV'] == 'true':
+    if os.environ.has_key('DEV') and os.environ['DEV'] == 'true':
         socketio.run(app, host='0.0.0.0', port=8080, debug=True, 
                      certfile='ssl/server.crt', keyfile='ssl/server.key')
     else:
