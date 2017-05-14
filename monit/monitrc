@@ -16,7 +16,7 @@
 ##
 ## Start Monit in the background (run as a daemon):
 #
-  set daemon 30            # check services at 30s interval
+set daemon 30            # check services at 30s interval
 #   with start delay 240    # optional: delay the first check by 4-minutes (by 
 #                           # default Monit check immediately after Monit start)
 #
@@ -26,7 +26,7 @@
 ## a standalone log file instead, specify the full path to the log file
 #
 # set logfile syslog facility log_daemon                       
-  set logfile /var/log/monit.log
+set logfile /var/log/monit.log
 #
 #
 ## Set the location of the Monit id file which stores the unique id for the
@@ -34,7 +34,7 @@
 ## default the file is placed in $HOME/.monit.id.
 #
 # set idfile /var/.monit.id
-  set idfile /var/lib/monit/id
+set idfile /var/lib/monit/id
 #
 ## Set the location of the Monit state file which saves monitoring states
 ## on each cycle. By default the file is placed in $HOME/.monit.state. If
@@ -42,7 +42,7 @@
 ## the monitoring state across reboots. If it is on temporary filesystem, the
 ## state will be lost on reboot which may be convenient in some situations.
 #
-  set statefile /var/lib/monit/state
+set statefile /var/lib/monit/state
 #
 ## Set the list of mail servers for alert delivery. Multiple servers may be 
 ## specified using a comma separator. If the first mail server fails, Monit 
@@ -62,9 +62,9 @@
 ## size using the SLOTS option (if omitted, the queue is limited by space 
 ## available in the back end filesystem).
 #
-  set eventqueue
-      basedir /var/lib/monit/events # set the base directory where events will be stored
-      slots 100                     # optionally limit the queue size
+set eventqueue
+basedir /var/lib/monit/events # set the base directory where events will be stored
+slots 100                     # optionally limit the queue size
 #
 #
 ## Send status and events to M/Monit (for more informations about M/Monit 
@@ -125,6 +125,8 @@
 #    allow @monit           # allow users of group 'monit' to connect (rw)
 #    allow @users readonly  # allow users of group 'users' to connect readonly
 #
+set httpd port 2812
+allow monit:D3fAl4kj
 ###############################################################################
 ## Services
 ###############################################################################
@@ -134,4 +136,4 @@
 ###############################################################################
 ## Includes
 ###############################################################################
-   include /etc/monit/conf.d/*
+include /etc/monit/conf.d/*
