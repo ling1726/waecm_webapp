@@ -1,0 +1,3 @@
+GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION ;
+CREATE DATABASE IF NOT EXISTS waecm;
+GRANT ALL PRIVILEGES ON *.* TO 'waecmuser'@'%' IDENTIFIED BY 'waecmpassword';
