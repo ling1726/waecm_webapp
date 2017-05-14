@@ -1,7 +1,6 @@
 #!/bin/bash
 export DEV=false
 
-/etc/init.d/monit start
 su web
 
 function build(){
@@ -45,5 +44,8 @@ if [ "$1" = "dev" ]; then
 	build_dev
 	deploy
 fi
+
+
+/etc/init.d/monit start
 
 sleep infinity
