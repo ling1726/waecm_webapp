@@ -125,8 +125,6 @@ slots 100                     # optionally limit the queue size
 #    allow @monit           # allow users of group 'monit' to connect (rw)
 #    allow @users readonly  # allow users of group 'users' to connect readonly
 #
-set httpd port 2812
-allow monit:D3fAl4kj
 ###############################################################################
 ## Services
 ###############################################################################

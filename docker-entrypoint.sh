@@ -2,6 +2,18 @@
 export DEV=false
 
 su web
+if [ "$APPSERVER" = "1" ]
+then
+    echo "set httpd port 3001 and" >> /etc/monit/monitrc
+    echo "allow 0.0.0.0/0.0.0.0" >> /etc/monit/monitrc
+fi
+
+if [ "$APPSERVER" = "2" ]
+then
+    echo "set httpd port 3002 and" >> /etc/monit/monitrc
+    echo "allow 0.0.0.0/0.0.0.0" >> /etc/monit/monitrc
+fi
+
 
 function build(){
 	echo "installing dependencies and building app"

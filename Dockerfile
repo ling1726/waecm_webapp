@@ -12,7 +12,7 @@ RUN chown -R web:web /app
 COPY ./monit/monitrc /etc/monit/monitrc
 COPY ./monit/app/ /etc/monit/conf.d/
 RUN chown -R root:root /etc/monit/
-RUN chmod 600 /etc/monit/monitrc
+RUN chmod 700 /etc/monit/monitrc
 
 
 WORKDIR /app

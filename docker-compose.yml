@@ -2,24 +2,33 @@ version: '2'
 services:
     appserver1:
         build: .
-        command: deploy
+        command: dev 
         volumes:
             - "./:/app"
         depends_on:
             - "db"
+        ports:
+            - "3001:3001"
+        environment:
+            - APPSERVER=1
 
     appserver2:
         build: .
-        command: deploy
+        command: dev
         volumes:
             - "./:/app"
         depends_on:
             - "appserver1"
-
+        ports:
+            - "3002:3002"
+        environment:
+            - APPSERVER=2
     db:
         build: ./db
+        command: dev
         ports:
             - "3306:3306"
+            - "3000:3000"
 
     loadbalancer:
         image: nginx:stable-alpine
