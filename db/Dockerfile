@@ -18,6 +18,5 @@ RUN chmod 600 /etc/monit/monitrc
 COPY ./docker-entrypoint.sh .
 COPY ./startup.sql .
 ENTRYPOINT ["./docker-entrypoint.sh"]
-#CMD ["mysqld"]
 
 EXPOSE 3306

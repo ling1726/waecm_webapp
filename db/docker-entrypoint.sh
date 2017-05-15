@@ -1,3 +1,3 @@
 #!/bin/bash
 
-monit -Iv
+exec monit -I -v

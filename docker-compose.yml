@@ -2,7 +2,7 @@ version: '2'
 services:
     appserver1:
         build: .
-        command: dev
+        command: deploy
         volumes:
             - "./:/app"
         depends_on:
@@ -10,7 +10,7 @@ services:
 
     appserver2:
         build: .
-        command: dev
+        command: deploy
         volumes:
             - "./:/app"
         depends_on:
@@ -20,12 +20,6 @@ services:
         build: ./db
         ports:
             - "3306:3306"
-        environment:
-            - MYSQL_RANDOM_ROOT_PASSWORD=yes
-            - MYSQL_DATABASE=waecm
-            - MYSQL_USER=waecmuser
-            - MYSQL_PASSWORD=waecmpassword
-            - MYSQL_ROOT_HOST=%
 
     loadbalancer:
         image: nginx:stable-alpine

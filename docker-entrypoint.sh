@@ -24,7 +24,7 @@ function build_dev(){
 }
 function deploy(){
 	echo "run app"
-	/app/monit/scripts/backend.sh start
+	exec monit -I -v
 }
 
 if [ "$1" = "build" ]; then
@@ -42,10 +42,9 @@ fi
 if [ "$1" = "dev" ]; then
     export DEV=true
 	build_dev
-	deploy
+    echo "running dev server"
+    python server.py
 fi
 
 
-/etc/init.d/monit start
 
-sleep infinity
