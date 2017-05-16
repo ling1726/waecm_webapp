@@ -8,10 +8,10 @@ healthcheckAPI = Blueprint('healthcheckAPI', __name__)
 def doHealthCheck():
 
     status_request = subprocess.Popen("monit status", shell=True, stdout=subprocess.PIPE)
+    response = status_request.stdout.read()
+    if (response != ""):
 
-    if (status_request.stdout.read() != ""):
-
-        status_info = re.split(r'\n\n', status_request.stdout.read())
+        status_info = re.split(r'\n\n', response)
 
         process_info = status_info[1]
         system_info = status_info[2]
