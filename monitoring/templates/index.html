@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+    (function (){
+
+         var poll=function () {
+              $.ajax({ //url: ("https://jsonplaceholder.typicode.com/posts/1"),
+                  url: ("http://localhost:5000/status"),
+                  dataType: 'json',
+                  type:'get',
+                  success:function (data) {
+                      console.log(data)
+                      $('.user-count').text(data.title)
+                  },
+                  error: function () {
+
+                  }
+              })
+         }
+     setInterval( function(){
+        poll();
+
+      },5000);
+    })();
+
+
+
+</script>
+
+
+    <h1> counter: {{ counter }} </h1>
+
+
+    <br>
+    <h1> id:  <span class="user2"> {{ data.id }} </span></h1>
+
+    <h1> title :  {{ data.title }}</h1>
+
+    <h1> body:  <span > {{ data.body }} </span></h1>
+
+
+    <br>
+
+    <hr>
+
+
+    <h1> id: <span class="user2"> {{ data2.id }} </span></h1>
+
+    <h1> title :  {{ data2.title }}</h1>
+
+    <h1> body: <span> {{ data2.body }} </span></h1>
+
+
+
+
+    <h1> polling:  <span class="user-count"> </span></h1>
+
+
+</body>
+</html>
