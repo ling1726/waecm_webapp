@@ -4,7 +4,7 @@ PIDFILE=/var/run/mysqld.pid
 
 case $1 in
     start)
-        /usr/sbin/mysqld --bind-address="0.0.0.0" --verbose --init-file="/startup.sql"
+        /usr/sbin/mysqld --bind-address="0.0.0.0" --verbose --init-file="/startup.sql" &
     ;;
     stop)
         killall mysqld
