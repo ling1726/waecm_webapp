@@ -2,7 +2,7 @@ version: '2'
 services:
     appserver1:
         build: .
-        command: dev 
+        command: deploy 
         volumes:
             - "./:/app"
         depends_on:
@@ -14,7 +14,7 @@ services:
 
     appserver2:
         build: .
-        command: dev
+        command: deploy
         volumes:
             - "./:/app"
         depends_on:
@@ -23,9 +23,17 @@ services:
             - "3002:3002"
         environment:
             - APPSERVER=2
+
+    monitoring:
+        build: ./monitoring
+        depends_on:
+            - "appserver2"
+        ports:
+            - "5000:5000"
+
     db:
         build: ./db
-        command: dev
+        command: deploy 
         ports:
             - "3306:3306"
             - "3000:3000"
@@ -38,6 +46,3 @@ services:
             - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
         depends_on:
             - "appserver2"
-
-    # monitoring:
-        # image: ./monitoring/.
