@@ -51,7 +51,9 @@ def hello_world():
 
 @app.route('/status')
 def getStatus():
-    return jsonify(testData)
+    status = {"appserver1":testData, "appserver2":testData}
+    
+    return jsonify(status)
 
 
 if __name__ == '__main__':

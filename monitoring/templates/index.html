@@ -3,16 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
 </head>
 <body>
+    <h1>piggyBank application server dashboard </h1>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<h2>Appserver 1 - <span id="appserver1-timestamp"></span></h2>
+<table class="display cell-border" id="appserver1">
+    <thead>
+    <tr>
+        <th>Status</th>
+        <th>CPU usage</th> 
+        <th>Memory usage</th>
+        <th>Response time</th>
+        <th>Uptime</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id="appserver1-status">loading</td>
+        <td id="appserver1-cpu">loading</td> 
+        <td id="appserver1-mem">loading</td>
+        <td id="appserver1-response">loading</td>
+        <td id="appserver1-uptime">loading</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Appserver 2 - <span id="appserver2-timestamp"></span></h2>
+<table class="display cell-border" id="appserver2">
+    <thead>
+    <tr>
+        <th>Status</th>
+        <th>CPU usage</th> 
+        <th>Memory usage</th>
+        <th>Response time</th>
+        <th>Uptime</th>
+    </tr>
+    </thead>
+    </tbody>
+    <tr>
+        <td id="appserver2-status">loading</td>
+        <td id="appserver2-cpu">loading</td> 
+        <td id="appserver2-mem">loading</td>
+        <td id="appserver2-response">loading</td>
+        <td id="appserver2-uptime">loading</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script>
 
     (function (){
-
+         $('#appserver1').DataTable({searching: false, paging: false, ordering: false, columnDefs: [{"className": "dt-center", "targets": "_all"}]});
+         $("#appserver2").DataTable({searching: false, paging: false, ordering: false, columnDefs: [{"className": "dt-center", "targets": "_all"}]});
          var poll=function () {
               $.ajax({ //url: ("https://jsonplaceholder.typicode.com/posts/1"),
                   url: ("http://localhost:5000/status"),
@@ -20,17 +68,27 @@
                   type:'get',
                   success:function (data) {
                       console.log(data)
-                      $("#appserver1-status").text(data.Process.status);
-                      $("#appserver1-cpu").text(data.Process["cpu percent total"]);
-                      $("#appserver1-mem").text(data.Process["memory kilobytes total"])
-                      $("#appserver1-response").text(data.Process["port response time"])
-                      $("#appserver1-uptime").text(data.Process.uptime); 
+                      $("#appserver1-status").text(data.appserver1.Process.status);
+                      $("#appserver1-cpu").text(data.appserver1.Process["cpu percent total"]);
+                      $("#appserver1-mem").text(data.appserver1.Process["memory kilobytes total"])
+                      $("#appserver1-response").text(data.appserver1.Process["port response time"])
+                      $("#appserver1-uptime").text(data.appserver1.Process.uptime); 
+                      $("#appserver1-timestamp").text("Last updated: "+data.appserver1.Process["data collected"]);
+                     
+                      $("#appserver2-status").text(data.appserver2.Process.status);
+                      $("#appserver2-cpu").text(data.appserver2.Process["cpu percent total"]);
+                      $("#appserver2-mem").text(data.appserver2.Process["memory kilobytes total"])
+                      $("#appserver2-response").text(data.appserver2.Process["port response time"])
+                      $("#appserver2-uptime").text(data.appserver2.Process.uptime); 
+                      $("#appserver2-timestamp").text("Last updated: "+data.appserver2.Process["data collected"]);
+
                   },
                   error: function () {
                     
                   }
               })
          }
+         poll()
      setInterval( function(){
         poll();
 
@@ -40,25 +98,6 @@
 
 
 </script>
-
-
-<h2>Appserver 1 - <span id="appserver1-timestamp"></span></h2>
-<table id="appserver1">
-    <tr>
-        <th>Status</th>
-        <th>CPU usage</th> 
-        <th>Memory usage</th>
-        <th>Response time</th>
-        <th>Uptime</th>
-    </tr>
-    <tr>
-        <td id="appserver1-status"></td>
-        <td id="appserver1-cpu"></td> 
-        <td id="appserver1-mem"></td>
-        <td id="appserver1-response"></td>
-        <td id="appserver1-uptime"></td>
-    </tr>
-</table>
 
 
 </body>
