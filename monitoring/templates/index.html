@@ -14,23 +14,33 @@
     (function (){
 
          var poll=function () {
-              $.ajax({ //url: ("https://jsonplaceholder.typicode.com/posts/1"),
-                  url: ("http://localhost:5000/"),
+              $.ajax({
+                  // works properly -> callback success
+                  url: ("https://jsonplaceholder.typicode.com/posts/1"),
+                  //error: No 'Access-Control-Allow-Origin' header is present on the requested resource
+                 // url: ("https://localhost:8080/api/healthcheck"),
+                  // polling not worked
+                  //url: ("http://localhost:5000/"),
                   dataType: 'json',
                   type:'get',
-                  success:function (data) {
+                  success: function (data) {
                       console.log("success")
-                      $('.user-count').text(data.title)
+                      console.log(data)
+                      $('.process-data-collected').text(data.id)
+                      $('.process-monit-status').text(data.title)
+                      $('.process-status').text(data.body)
                   },
-                  error: function () {
-
+                  error: function (err, data) {
+                       console.log("error")
+                       console.log(err)
+                       console.log(data)
                   }
               })
          }
      setInterval( function(){
         poll();
 
-      },5000);
+      },4000);
     })();
 
 
@@ -38,32 +48,49 @@
 </script>
 
 
-    <h1> counter: {{ counter }} </h1>
 
 
-    <br>
-    <h1> id:  <span class="user2"> {{ data.id }} </span></h1>
-
-    <h1> title :  {{ data.title }}</h1>
-
-    <h1> body:  <span > {{ data.body }} </span></h1>
+<h1 style="text-align: center">  Monitoring Dashboard </h1>
 
 
-    <br>
-
-    <hr>
-
-
-    <h1> id: <span class="user2"> {{ data2.id }} </span></h1>
-
-    <h1> title :  {{ data2.title }}</h1>
-
-    <h1> body: <span> {{ data2.body }} </span></h1>
-
-
-
-
-    <h1> polling:  <span class="user-count"> </span></h1>
+    <h3 style="text-align: center" ><span > process </span> </h3>
+    <ul>
+        <li > data collected:  <span class="process-data-collected">  </span> </li>
+        <li> monitoring status :  <span class="process-monit-status">  </span>  </li>
+        <li> status :  <span class="process-status"> </span> </li>
+    </ul>
+     <h3 style="text-align: center"> <span> System: </span> </h3>
+    <ul>
+        <li>cpu: </li>
+        <li>data collected:</li>
+        <li>load average:</li>
+        <li>memory usage: </li>
+        <li>monitoring status:</li>
+        <li>status:</li>
+        <li>swap usage:</li>
+    </ul>
+{#    <h1> data collected:  {{ data.id }} </h1>#}
+{##}
+{#    <h1> monitoring status :  {{ data.title }}</h1>#}
+{##}
+{#    <h1> status :   {{ data.body }} </h1>#}
+{##}
+{##}
+{#    <br>#}
+{##}
+{#    <hr>#}
+{##}
+{##}
+{#    <h1> id: <span class="user2"> {{ data2.id }} </span></h1>#}
+{##}
+{#    <h1> title :  {{ data2.title }}</h1>#}
+{##}
+{#    <h1> body: <span> {{ data2.body }} </span></h1>#}
+{##}
+{##}
+{##}
+{##}
+{#    <h1> polling:  <span class="user-count"> </span></h1>#}
 
 
 </body>

@@ -1,4 +1,4 @@
-from flask import Flask,render_template, request, jsonify
+from flask import Flask,render_template, jsonify
 import requests
 import threading
 import thread
@@ -11,10 +11,13 @@ def hello_world():
     print ("request sent to jsonplaceholder")
 
 
-    r = requests.get("https://jsonplaceholder.typicode.com/posts/1")
-    r1 = requests.get("https://jsonplaceholder.typicode.com/posts/7")
+   # instance_1= requests.get("https://localhost:8080/api/healthcheck")
+    #print instance_1.json()
+    #r = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+   # r1 = requests.get("https://jsonplaceholder.typicode.com/posts/7")
 
-    return render_template('index.html', data=r.json(), data2=r1.json())
+
+    return render_template('index.html')
 
 
 
