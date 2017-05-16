@@ -20,10 +20,14 @@
                   type:'get',
                   success:function (data) {
                       console.log(data)
-                      $('.user-count').text(data.title)
+                      $("#appserver1-status").text(data.Process.status);
+                      $("#appserver1-cpu").text(data.Process["cpu percent total"]);
+                      $("#appserver1-mem").text(data.Process["memory kilobytes total"])
+                      $("#appserver1-response").text(data.Process["port response time"])
+                      $("#appserver1-uptime").text(data.Process.uptime); 
                   },
                   error: function () {
-
+                    
                   }
               })
          }
@@ -38,32 +42,23 @@
 </script>
 
 
-    <h1> counter: {{ counter }} </h1>
-
-
-    <br>
-    <h1> id:  <span class="user2"> {{ data.id }} </span></h1>
-
-    <h1> title :  {{ data.title }}</h1>
-
-    <h1> body:  <span > {{ data.body }} </span></h1>
-
-
-    <br>
-
-    <hr>
-
-
-    <h1> id: <span class="user2"> {{ data2.id }} </span></h1>
-
-    <h1> title :  {{ data2.title }}</h1>
-
-    <h1> body: <span> {{ data2.body }} </span></h1>
-
-
-
-
-    <h1> polling:  <span class="user-count"> </span></h1>
+<h2>Appserver 1 - <span id="appserver1-timestamp"></span></h2>
+<table id="appserver1">
+    <tr>
+        <th>Status</th>
+        <th>CPU usage</th> 
+        <th>Memory usage</th>
+        <th>Response time</th>
+        <th>Uptime</th>
+    </tr>
+    <tr>
+        <td id="appserver1-status"></td>
+        <td id="appserver1-cpu"></td> 
+        <td id="appserver1-mem"></td>
+        <td id="appserver1-response"></td>
+        <td id="appserver1-uptime"></td>
+    </tr>
+</table>
 
 
 </body>
