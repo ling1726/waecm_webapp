@@ -30,13 +30,15 @@ def hello_world():
 
 @app.route('/status')
 def getStatus():
-    appserver1 = default
-    appserver2 = default
+
     try:
         appserver1 = requests.get("https://appserver1:8080/api/healthcheck", verify=False).json()
+    except:
+        appserver1 = default
+    try:
         appserver2 = requests.get("https://appserver2:8080/api/healthcheck", verify=False).json()
     except:
-        return jsonify({"appserver1":appserver1, "appserver2":appserver2})    
+        appserver2 = default
     
     status = {"appserver1":appserver1, "appserver2":appserver2} 
     return jsonify(status)
