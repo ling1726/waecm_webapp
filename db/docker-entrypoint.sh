@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ "$1" = deploy ]; then
+    rm -f /var/run/monit.pid
     exec monit -I -v	
 fi
 

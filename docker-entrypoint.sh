@@ -36,6 +36,7 @@ function build_dev(){
 }
 function deploy(){
 	echo "run app"
+    rm -f /var/run/monit.pid
 	exec monit -I -v
 }
 
