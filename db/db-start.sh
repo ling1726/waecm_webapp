@@ -11,6 +11,6 @@ case $1 in
         rm /var/run/mysqld/*
     ;;
     *)
-        echo "usage: backend.sh {start|stop}" ;;
+        echo "usage: db-start.sh {start|stop}" ;;
 esac
 exit 0

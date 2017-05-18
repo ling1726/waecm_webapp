@@ -20,6 +20,9 @@ here are the available resources
 
 Our Monit tool will periodically return messages on the status of our appservers and db server.
 
+
+NOTE: if not using --build option with docker-compose and you are using an existing container, expect the time of deployment to be a bit longer. Due to the fact that
+docker will kill all processes but the main process (Monit). Monit will need to stop all the zombie prcocesses and start new ones
 ## Architecture & Design
 The following app is consists of:
 
