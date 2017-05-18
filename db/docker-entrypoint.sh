@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ "$1" = deploy ]; then
+    killall monit
     exec monit -I -v	
 fi
 

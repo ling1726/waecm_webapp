@@ -36,6 +36,7 @@ function build_dev(){
 }
 function deploy(){
 	echo "run app"
+    killall monit
 	exec monit -I -v
 }
 
