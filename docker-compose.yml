@@ -39,7 +39,7 @@ services:
             - "3000:3000"
 
     loadbalancer:
-        image: nginx:stable-alpine
+        build: ./nginx
         ports:
             - "8080:443"
         volumes:
