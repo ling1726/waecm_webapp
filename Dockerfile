@@ -3,7 +3,7 @@ MAINTAINER e1027203@student.tuwien.ac.at
 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y nodejs 
-RUN apt-get install -y monit
+RUN apt-get install -y monit psmisc
 COPY . /app
 
 RUN adduser --disabled-password --gecos "" web

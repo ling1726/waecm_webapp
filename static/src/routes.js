@@ -12,10 +12,12 @@ import App from './components/App';
 
 export default (
 	<Route path="/" component={App}>
-		<IndexRoute components={{main:AuthContainer, nav:NavContainer}} />
+		<IndexRoute components={{main:OverviewContainer, nav:NavContainer}} />
 		<Route path="/overview" components={{main:OverviewContainer, nav:NavContainer}}/>
         <Route path="/activity" components={{main:ActivityContainer, nav:NavContainer}}/>
         <Route path="/transfer" components={{main:TransferContainer, nav:NavContainer}}/>
 		<Route path="/Settings" component={{main:SettingsContainer, nav:NavContainer}}/>
+		<Route path="/auth" components={{main:AuthContainer, nav:NavContainer}} />
+
 	</Route>
 );
