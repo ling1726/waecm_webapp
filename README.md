@@ -60,12 +60,12 @@ Nginx serves the role as a load balancer and a reverse proxy. If one appserver d
 the second one.
 
 ### Testing Monitoring tool restart
-Our monitoring tool Monit is available in our appserver containers and our database container. To test that the restarts our working:
+Our monitoring tool Monit is available in our appserver containers and our database container and our nginx container. To test that the restarts our working:
 
 1. run `$ docker ps` to list the ids of the running containers
 2. for the chosen container run `$ docker exec -it <container-id> bash`, this opens a shell into the container
 3. run `$ ps -e` to find the list of pids
-4. for the database container the corresponding process will be `mysqld` and for the appserver containers the corresponding process will be `python`
+4. for the database container the corresponding process will be `mysqld` and for the appserver containers the corresponding process will be `python` and for the nginx container the corresponding process will be `nginx`. For nginx the master AND worker process must be killed to interrupt operation.
 5. run the appropriate `$ kill -9 <pid>` command to kill the process
 6. keep and eye on the docker log output (which should be running in another terminal) and watch as the service restarts
 7. additionally you should at some point see a restarted process through `$ ps -e` in the container shell
